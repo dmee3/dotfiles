@@ -28,9 +28,13 @@ export CLICOLOR=1
 # Customize ls command colors
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
+# Git branch in prompt
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 # Change prompt
-# default is PS1="\h:\W \u\$"
-export PS1="\u:\W $ "
+export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # Load rbenv
 if which rbenv > /dev/null; then
