@@ -1,0 +1,34 @@
+# Uses config_curator gem to copy config files over to root (default ~/)
+# For more info, check https://github.com/razor-x/config_curator
+#
+# Usage:
+#
+#     $ bundle install
+#     $ curate -v
+
+
+###
+# Components are entire directories
+# WARNING: THIS WILL OVERWRITE DESTINATION DIRECTORIES
+###
+
+components:
+  - src: vim
+    dst: .vim
+
+
+
+###
+# Config files are copied individually
+# Subdirectories are created as needed
+###
+
+config_files:
+  - src: bash_profile
+    dst: .bash_profile
+
+  - src: inputrc
+    dst: .inputrc
+
+  - src: vimrc
+    dst: .vimrc

@@ -15,6 +15,9 @@ Plugin 'kchmck/vim-coffee-script'
 " Elixir support
 Plugin 'elixir-lang/vim-elixir'
 
+" YAML support
+Plugin 'avakhov/vim-yaml'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -59,6 +62,9 @@ set wildmenu
 
 " Autocompletion for code
 set omnifunc=syntaxcomplete#Complete
+
+" Source ~/.bash_profile when using the :sh command
+set shell=bash\ --login
 
 " Map autocomplete to <C-z>
 imap <C-z> <C-x><C-o>
