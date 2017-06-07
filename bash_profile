@@ -3,19 +3,24 @@ if ! ssh-add -L >/dev/null; then
 fi
 
 # Aliases
-alias h="history"
 alias ..="cd .."
-alias ..2="cd ../../"
-alias ..3="cd ../../../"
-alias ..4="cd ../../../../"
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
+alias h="history"
+alias l="ls -lah"
 
 # Git aliases
 alias g="git"
-alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
-alias gl="git log --graph"
+alias gl="git pull"
+alias glgg="git log --graph"
+alias gp="git push"
+alias gs="git status"
 
 # Check ~/.inputrc for incremental search commands, allowing you to type
 # say, "ls", then scroll through history of all ls commands with up/down
