@@ -2,12 +2,16 @@ if ! ssh-add -L >/dev/null; then
   ssh-add -K
 fi
 
+# Load machine-specific settings
+source ~/.machine_profile
+
 # Aliases
 alias h="history"
 alias ..="cd .."
 alias ..2="cd ../../"
 alias ..3="cd ../../../"
 alias ..4="cd ../../../../"
+alias be="bundle exec"
 
 # Git aliases
 alias g="git"
