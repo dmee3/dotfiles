@@ -2,9 +2,6 @@ if ! ssh-add -L >/dev/null; then
   ssh-add -K
 fi
 
-# Load machine-specific settings
-source ~/.machine_profile
-
 # Aliases
 alias h="history"
 alias ..="cd .."
@@ -45,3 +42,6 @@ export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 if which rbenv > /dev/null; then
   eval "$(rbenv init -)";
 fi
+
+# Load machine-specific settings last
+source ~/.machine_profile
