@@ -98,7 +98,7 @@ set incsearch " Incremental search results
 " Movement
 " Treat long lines as breaks
 map j gj
-map j gk
+map k gk
 
 " Relative or absolute number lines
 function! NumberToggle()
