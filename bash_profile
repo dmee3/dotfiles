@@ -43,10 +43,23 @@ parse_git_branch() {
 # Change prompt
 export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
-# Load rbenv
-if which rbenv > /dev/null; then
-  eval "$(rbenv init -)";
-fi
+# Uncomment if using rbenv to manage Ruby versions
+# if which rbenv > /dev/null; then
+#  eval "$(rbenv init -)";
+# fi
+
+# Agnoster theme - https://github.com/speedenator/agnoster-bash
+# Uncomment to use theme, must be placed in folder shown below
+# export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
+# if [[ -f $THEME ]]; then
+#   export DEFAULT_USER=`whoami`
+#   source $THEME
+# fi
+#  Overrides for prompt
+# prompt_context() {
+#   prompt_segment black default "$USER"
+# }
+# prompt_histdt () { :; }
 
 # Load machine-specific settings last
 source ~/.machine_profile
