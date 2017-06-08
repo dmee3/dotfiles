@@ -50,7 +50,7 @@ export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # Agnoster theme - https://github.com/speedenator/agnoster-bash
 # Uncomment to use theme, must be placed in folder shown below
-# export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
+# export THEME=$HOME/.bash/themes/agnoster.bash
 # if [[ -f $THEME ]]; then
 #   export DEFAULT_USER=`whoami`
 #   source $THEME
