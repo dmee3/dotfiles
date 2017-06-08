@@ -17,7 +17,6 @@ components:
     dst: .vim
 
 
-
 ###
 # Config files are copied individually
 # Subdirectories are created as needed
@@ -32,3 +31,6 @@ config_files:
 
   - src: vimrc
     dst: .vimrc
+
+  - src: themes/agnoster.bash
+    dst: .bash/themes/agnoster.bash
