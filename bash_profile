@@ -18,8 +18,10 @@ alias g="git"
 alias ga="git add"
 alias gc="git commit"
 alias gl="git pull"
+alias glom="git pull origin master"
 alias glgg="git log --graph"
 alias gp="git push"
+alias gpom="git push origin master"
 alias gs="git status"
 
 # Enable colors
