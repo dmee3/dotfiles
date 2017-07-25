@@ -16,6 +16,7 @@ alias l="ls -lah"
 # Git aliases
 alias g="git"
 alias ga="git add"
+alias gb="git branch"
 alias gc="git commit"
 alias gco="git checkout"
 alias gcob="git checkout -b"
@@ -27,6 +28,18 @@ alias gp="git push"
 alias gpom="git push origin master"
 alias gs="git status"
 
+# Git functions
+gpob() {
+  cmd="git push origin "
+  echo -e "\033[0;31mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  eval "$cmd$(parse_git_branch)"
+}
+glob() {
+  cmd="git pull origin "
+  echo -e "\033[0;31mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  eval "$cmd$(parse_git_branch)"
+}
+
 # Enable colors
 export CLICOLOR=1
 
@@ -35,7 +48,7 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # Git branch in prompt
 parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 # Change prompt
