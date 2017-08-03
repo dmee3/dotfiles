@@ -34,3 +34,6 @@ config_files:
 
   - src: themes/agnoster.bash
     dst: .bash/themes/agnoster.bash
+
+  - src: swearjar.rb
+    dst: .fun/swearjar.rb

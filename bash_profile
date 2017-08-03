@@ -54,5 +54,10 @@ parse_git_branch() {
 # Change prompt
 export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
+# Sometimes you just need to vent
+fuck() {
+  ruby ~/.fun/swearjar.rb "$@"
+}
+
 # Load machine-specific settings last
 source ~/.machine_profile
