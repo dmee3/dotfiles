@@ -9,6 +9,9 @@ Plugin 'gmarik/Vundle.vim'
 " NERDTree - File explorer
 Plugin 'scrooloose/nerdtree'
 
+" Indentation guides - toggle with \ig
+Plugin 'nathanaelkane/vim-indent-guides'
+
 " CoffeeScript support
 Plugin 'kchmck/vim-coffee-script'
 
