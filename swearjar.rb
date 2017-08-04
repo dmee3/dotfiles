@@ -52,17 +52,7 @@ class Letter
   end
 end
 
-def swear_f
-  (0..4).each do |i|
-    words.each { |w| print "#{w.line i}   " }
-    puts ''
-  end
-  puts TEXT_COLORS[:default]
-end
-
-words = [
-  [Letter.new('f'), Letter.new('u'), Letter.new('c'), Letter.new('k')]
-]
+words = []
 
 ARGV.each do |a|
   letters = a.split ''
@@ -71,7 +61,7 @@ ARGV.each do |a|
   end
 end
 
-str = ''
+str = "\n"
 
 (0..4).each do |i|
   words.each do |w|
@@ -81,4 +71,4 @@ str = ''
   str << "\n"
 end
 
-puts str
+puts "#{str}\n"

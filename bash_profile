@@ -48,7 +48,7 @@ export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # Git branch in prompt
 parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 # Change prompt
@@ -56,7 +56,10 @@ export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # Sometimes you just need to vent
 fuck() {
-  ruby ~/.fun/swearjar.rb "$@"
+  ruby ~/.fun/swearjar.rb fuck "$@"
+}
+shit() {
+  ruby ~/.fun/swearjar.rb shit "$@"
 }
 
 # Load machine-specific settings last
