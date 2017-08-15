@@ -31,12 +31,12 @@ alias gs="git status"
 # Git functions
 gpob() {
   cmd="git push origin "
-  echo -e "\033[0;31mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
   eval "$cmd$(parse_git_branch)"
 }
 glob() {
   cmd="git pull origin "
-  echo -e "\033[0;31mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
   eval "$cmd$(parse_git_branch)"
 }
 
