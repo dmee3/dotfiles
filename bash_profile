@@ -12,6 +12,7 @@ alias bi="bundle install"
 alias bu="bundle update"
 alias h="history"
 alias l="ls -lah"
+alias chrome="open -a /Applications/Google\ Chrome.app"
 
 # Git aliases
 alias g="git"
