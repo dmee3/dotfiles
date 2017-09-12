@@ -28,6 +28,7 @@ alias glgg="git log --graph"
 alias gp="git push"
 alias gpom="git push origin master"
 alias gs="git status"
+alias grhh="git reset --hard HEAD"
 
 # Git functions
 gpob() {
