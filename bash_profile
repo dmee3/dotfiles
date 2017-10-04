@@ -29,6 +29,7 @@ alias gp="git push"
 alias gpom="git push origin master"
 alias gs="git status"
 alias grhh="git reset --hard HEAD"
+alias gri="git fetch && git rebase -i origin/master"
 
 # Git functions
 gpob() {
