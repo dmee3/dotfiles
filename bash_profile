@@ -35,12 +35,22 @@ alias gri="git fetch && git rebase -i origin/master"
 gpob() {
   cmd="git push origin "
   echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
-  eval "$cmd$(parse_git_branch)"
+  $cmd "$(parse_git_branch)"
+  if [ $? == 0 ]; then
+    echo -e "\033[0;32mSUCCESS\033[0m"
+  else
+    echo -e "\033[0;31mFAILURE\033[0m"
+  fi
 }
 glob() {
   cmd="git pull origin "
   echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
-  eval "$cmd$(parse_git_branch)"
+  $cmd "$(parse_git_branch)"
+  if [ $? == 0 ]; then
+    echo -e "\033[0;32mSUCCESS\033[0m"
+  else
+    echo -e "\033[0;31mFAILURE\033[0m"
+  fi
 }
 
 # Enable colors
