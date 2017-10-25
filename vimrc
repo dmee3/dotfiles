@@ -112,3 +112,14 @@ function! NumberToggle()
   endif
 endfunction
 command NT :call NumberToggle()
+
+" Toggle whether vim will auto-indent pasted content
+function! PasteToggle()
+  if(&paste == 1)
+    set nopaste
+  else
+    set paste
+  endif
+endfunc
+
+nnoremap <c-i> :call PasteToggle()<cr>
