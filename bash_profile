@@ -31,40 +31,43 @@ alias gs="git status"
 alias grhh="git reset --hard HEAD"
 alias gri="git fetch && git rebase -i origin/master"
 
-# Git functions
+# Print a colorized success/failure message
+report_status() {
+  if [ $1 == 0 ]; then
+    echo -e "\033[0;32mSUCCESS\033[0m"
+  else
+    echo -e "\033[0;31mFAILURE\033[0m"
+  fi
+}
+
+# Git push the current branch
+# FLAGS
+#   --force to force push
 gpob() {
   cmd="git push origin "
   echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
   $cmd "$(parse_git_branch)"
-  if [ $? == 0 ]; then
-    echo -e "\033[0;32mSUCCESS\033[0m"
-  else
-    echo -e "\033[0;31mFAILURE\033[0m"
-  fi
+  report_status $?
 }
+
+# Git pull the current branch
 glob() {
   cmd="git pull origin "
   echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
   $cmd "$(parse_git_branch)"
-  if [ $? == 0 ]; then
-    echo -e "\033[0;32mSUCCESS\033[0m"
-  else
-    echo -e "\033[0;31mFAILURE\033[0m"
-  fi
+  report_status $?
 }
 
-# Enable colors
+# Enable colors and customize ls command colors
 export CLICOLOR=1
-
-# Customize ls command colors
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-# Git branch in prompt
+# Parse current git branch
 parse_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
-# Change prompt
+# Format prompt
 export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 # Sometimes you just need to vent
