@@ -10,8 +10,10 @@ alias .....="cd ../../../.."
 alias be="bundle exec"
 alias bi="bundle install"
 alias bu="bundle update"
+alias s="bundle exec rspec"
 alias h="history"
 alias l="ls -lah"
+alias tr="tree"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 
 # Git aliases
