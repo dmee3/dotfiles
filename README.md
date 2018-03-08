@@ -5,17 +5,16 @@ Collection of files containing settings for various programs
 
 After cloning the repo, cd into it with `cd dotfiles` and run
 
-    bundle install
+    ruby initialize.rb
 
-Then, clone included files to the home directory
+This should take care of everything for you.  It's jank as hell so results may vary.  Good luck!
 
-**WARNING: THIS WILL OVERWRITE CURRENT FILES**
+## Notes
 
-    bundle exec curate -v
-
-Custom, machine-specific settings can be stored in `~/.machine_profile` and will be auto-loaded by `~/.bash_profile`.
+- Custom, machine-specific settings can be stored in `~/.machine_profile` and will be auto-loaded by `~/.bash_profile`.
 
 ## Brew Dependencies
+All of these should be handled by `initialize.rb`
 - fzf ([Fuzzy finder](https://github.com/junegunn/fzf))
 - chunkwm ([Window manager](https://github.com/koekeishiya/chunkwm))
 - skhd ([Shortcuts for chunkwm](https://github.com/koekeishiya/skhd))
