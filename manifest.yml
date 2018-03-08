@@ -29,6 +29,12 @@ config_files:
   - src: inputrc
     dst: .inputrc
 
+  - src: chunkwmrc
+    dst: .chunkwmrc
+
+  - src: skhdrc
+    dst: .skhdrc
+
   - src: vimrc
     dst: .vimrc
 

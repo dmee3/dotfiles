@@ -6,13 +6,13 @@ end
 list = `brew services list`
 
 if service_started?('chunkwm', list) || service_started?('skhd', list)
-  puts 'Starting chunkwm...'
+  puts 'Stopping chunkwm...'
   `brew services stop chunkwm`
-  puts 'Starting skhd...'
+  puts 'Stopping skhd...'
   `brew services stop skhd`
 else
-  puts 'Stopping chunkwm...'
+  puts 'Starting chunkwm...'
   `brew services start chunkwm`
-  puts 'Stopping skhd...'
+  puts 'Starting skhd...'
   `brew services start skhd`
 end
