@@ -15,6 +15,8 @@ Then, clone included files to the home directory
 
 Custom, machine-specific settings can be stored in `~/.machine_profile` and will be auto-loaded by `~/.bash_profile`.
 
+## Dependencies
+- fzf ([Brew install](https://github.com/junegunn/fzf))
 
 ## Vim Plugins
 

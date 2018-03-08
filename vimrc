@@ -21,6 +21,11 @@ Plugin 'elixir-lang/vim-elixir'
 " YAML support
 Plugin 'avakhov/vim-yaml'
 
+" Color schemes
+Plugin 'joshdick/onedark.vim'
+Plugin 'tomasr/molokai'
+Plugin 'chriskempson/base16-vim'
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
@@ -55,9 +60,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 " Colorscheme and related
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+colorscheme onedark
+" let g:molokai_original = 1 " only used for molokai colorscheme
+" let g:rehash256 = 1 " only used for molokai colorscheme
 syntax on " Syntax highlighting
 
 " Wildmenu Vim command autocompletion

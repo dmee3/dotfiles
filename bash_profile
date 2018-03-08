@@ -37,6 +37,12 @@ alias gs="git status"
 alias grhh="git reset --hard HEAD"
 alias gri="git fetch && git rebase -i origin/master"
 
+# Run vim based on fuzzy find
+vf() {
+  cmd="vim $(fzf --height 40%)"
+  $cmd
+}
+
 # Print a colorized success/failure message
 report_status() {
   if [ $1 == 0 ]; then
