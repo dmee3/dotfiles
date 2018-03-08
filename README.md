@@ -15,8 +15,10 @@ Then, clone included files to the home directory
 
 Custom, machine-specific settings can be stored in `~/.machine_profile` and will be auto-loaded by `~/.bash_profile`.
 
-## Dependencies
-- fzf ([Brew install](https://github.com/junegunn/fzf))
+## Brew Dependencies
+- fzf ([Fuzzy finder](https://github.com/junegunn/fzf))
+- chunkwm ([Window manager](https://github.com/koekeishiya/chunkwm))
+- skhd ([Shortcuts for chunkwm](https://github.com/koekeishiya/skhd))
 
 ## Vim Plugins
 

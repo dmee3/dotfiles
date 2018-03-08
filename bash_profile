@@ -43,6 +43,11 @@ vf() {
   $cmd
 }
 
+# Toggle window manager (chunkwm and skhd)
+wm() {
+  ruby ~/.fun/wm.rb
+}
+
 # Print a colorized success/failure message
 report_status() {
   if [ $1 == 0 ]; then
