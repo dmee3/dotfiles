@@ -16,6 +16,9 @@ components:
   - src: fun
     dst: .fun
 
+  - src: themes
+    dst: .bash/themes
+
 
 ###
 # Config files are copied individually
@@ -26,17 +29,14 @@ config_files:
   - src: bash_profile
     dst: .bash_profile
 
-  - src: inputrc
-    dst: .inputrc
-
   - src: chunkwmrc
     dst: .chunkwmrc
+
+  - src: inputrc
+    dst: .inputrc
 
   - src: skhdrc
     dst: .skhdrc
 
   - src: vimrc
     dst: .vimrc
-
-  - src: themes/agnoster.bash
-    dst: .bash/themes/agnoster.bash
