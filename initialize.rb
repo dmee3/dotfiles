@@ -13,8 +13,8 @@ module Colors
   TEXT_COLORS.each { |k, v| define_singleton_method(k) { v } }
 end
 
-def run_cmd(cmd, description = 'Running command...', indent = '')
-  puts description
+def run_cmd(cmd, description = 'Running command...')
+  puts "#{Colors.blue}#{description}#{Colors.default}"
   `#{cmd}`
 end
 
@@ -30,7 +30,7 @@ def run_cmd_with_status(cmd, description = 'Running command...', indent = '')
 end
 
 # Bundle install
-run_cmd('bundle install', "#{Colors.blue}Bundle installing...#{Colors.default}")
+run_cmd('bundle install', 'Bundle installing...')
 
 # Brew Dependencies
 puts "#{Colors.blue}Brewing formulae...#{Colors.default}"
@@ -43,4 +43,8 @@ end
 run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
 
 # Config Curator
-run_cmd('bundle exec config_curator', "#{Colors.blue}Curating...#{Colors.default}")
+run_cmd('bundle exec config_curator', 'Curating...')
+
+# Set source
+run_cmd('source ~/.bash_profile', 'Sourcing new profile...')
+
