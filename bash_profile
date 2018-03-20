@@ -40,7 +40,7 @@ alias gri="git fetch && git rebase -i origin/master"
 # Run vim based on fuzzy find
 vf() {
   local files
-  IFS=$'\n' files=($(fzf --height=40% --query="$1" --multi --select-1 --exit-0))
+  IFS=$'\n' files=($(fzf --height=50% --query="$1" --multi --select-1 --exit-0 --preview-window right:70% --preview 'highlight -O ansi -l --failsafe {}'))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 

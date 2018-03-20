@@ -36,6 +36,7 @@ run_cmd('bundle install', 'Bundle installing...')
 puts "#{Colors.blue}Brewing formulae...#{Colors.default}"
 brew_list = `brew ls`
 run_cmd_with_status('brew install fzf', 'Installing fzf...', '  ') unless brew_list =~ /fzf/
+run_cmd_with_status('brew install highlight', 'Installing highlight...', '  ') unless brew_list =~ /highlight/
 unless brew_list =~ /chunkwm/
   run_cmd_with_status('brew tap crisidev/homebrew-chunkwm', 'Tapping chunkwm cask...', '  ')
   run_cmd_with_status('brew install chunkwm', 'Installing chunkwm...', '  ')
