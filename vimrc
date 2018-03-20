@@ -53,8 +53,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set rtp+=/usr/local/opt/fzf " Use fzf
-
 " NERDTree
 " autocmd vimenter * NERDTree " Open automatically on startup
 " autocmd vimenter * wincmd w " Switch from NERDTree to opened buffer on startup
@@ -109,6 +107,13 @@ set incsearch " Incremental search results
 " Treat long lines as breaks
 map j gj
 map k gk
+
+" Use fzf and add quick command
+let g:fzf_opts = '--preview-window right:70% --preview "highlight -O ansi -l --failsafe {}"'
+set rtp+=/usr/local/opt/fzf
+command! -bang ZV call fzf#run(fzf#wrap({'sink': 'vs', 'options': fzf_opts}, <bang>0))
+command! -bang ZS call fzf#run(fzf#wrap({'sink': 'sp', 'options': fzf_opts}, <bang>0))
+command! -bang ZE call fzf#run(fzf#wrap({'sink': 'e', 'options': fzf_opts}, <bang>0))
 
 " Relative or absolute number lines
 function! NumberToggle()
