@@ -53,6 +53,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+set rtp+=/usr/local/opt/fzf " Use fzf
+
 " NERDTree
 " autocmd vimenter * NERDTree " Open automatically on startup
 " autocmd vimenter * wincmd w " Switch from NERDTree to opened buffer on startup
