@@ -39,8 +39,9 @@ alias gri="git fetch && git rebase -i origin/master"
 
 # Run vim based on fuzzy find
 vf() {
-  cmd="vim $(fzf --height 40%)"
-  $cmd
+  local files
+  IFS=$'\n' files=($(fzf --height=40% --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # Toggle window manager (chunkwm and skhd)
