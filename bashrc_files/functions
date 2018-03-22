@@ -1,0 +1,34 @@
+# Make a directory and cd into it
+mcd () {
+  mkdir -p $1; cd $1;
+}
+
+# Toggle window manager (chunkwm and skhd)
+wm() {
+  ruby ~/.bashrc_files/wm.rb
+}
+
+# Run vim based on fuzzy find
+vf() {
+  local files
+  IFS=$'\n' files=($(fzf --height=50% --query="$1" --multi --select-1 --exit-0 --preview-window right:70% --preview 'highlight -O ansi -l --failsafe {}'))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+# Sometimes you just need to vent
+fuck() {
+  ruby ~/.bashrc_files/swearjar.rb fuck "$@"
+}
+shit() {
+  ruby ~/.bashrc_files/swearjar.rb shit "$@"
+}
+
+# Print a colorized success/failure message
+report_status() {
+  if [ $1 == 0 ]; then
+    echo -e "\033[0;32mSUCCESS\033[0m"
+  else
+    echo -e "\033[0;31mFAILURE\033[0m"
+  fi
+}
+

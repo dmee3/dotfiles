@@ -13,8 +13,8 @@
 ###
 
 components:
-  - src: fun
-    dst: .fun
+  - src: bashrc_files
+    dst: .bashrc_files
 
   - src: themes
     dst: .bash/themes
@@ -28,6 +28,9 @@ components:
 config_files:
   - src: bash_profile
     dst: .bash_profile
+
+  - src: bashrc
+    dst: .bashrc
 
   - src: chunkwmrc
     dst: .chunkwmrc

@@ -1,0 +1,22 @@
+# Git push the current branch
+# FLAGS
+#   --force to force push
+gpob() {
+  cmd="git push origin "
+  echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  $cmd "$(parse_git_branch)"
+  report_status $?
+}
+
+# Git pull the current branch
+glob() {
+  cmd="git pull origin "
+  echo -e "\033[0;36mEXECUTING COMMAND:\033[0m $cmd$(parse_git_branch)"
+  $cmd "$(parse_git_branch)"
+  report_status $?
+}
+
+# Parse current git branch
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+}
