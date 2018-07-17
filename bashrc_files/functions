@@ -3,6 +3,17 @@ mcd () {
   mkdir -p $1; cd $1;
 }
 
+# Either cat a file or ls a directory
+show () {
+  if [[ -d $@ ]]; then
+    ls -lah $@
+  elif [[ -f $@ ]]; then
+    cat $@
+  else
+    echo "show: $@: No such file or directory"
+  fi
+}
+
 # Toggle window manager (chunkwm and skhd)
 wm() {
   ruby ~/.bashrc_files/wm.rb
