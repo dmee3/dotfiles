@@ -44,7 +44,7 @@ end
 run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
 
 # Config Curator
-run_cmd('bundle exec config_curator', 'Curating...')
+run_cmd('bundle exec curate -v', 'Curating...')
 
 # Set source
 run_cmd('source ~/.bash_profile', 'Sourcing new profile...')

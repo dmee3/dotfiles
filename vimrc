@@ -23,8 +23,6 @@ Plugin 'avakhov/vim-yaml'
 
 " Color schemes
 Plugin 'joshdick/onedark.vim'
-Plugin 'tomasr/molokai'
-Plugin 'chriskempson/base16-vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -59,11 +57,9 @@ filetype plugin indent on    " required
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close if last tab open
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Colorscheme and related
+" Color scheme and syntax highlighting
 colorscheme onedark
-" let g:molokai_original = 1 " only used for molokai colorscheme
-" let g:rehash256 = 1 " only used for molokai colorscheme
-syntax on " Syntax highlighting
+syntax on
 
 " Wildmenu Vim command autocompletion
 set wildmenu

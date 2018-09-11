@@ -19,6 +19,18 @@ wm() {
   ruby ~/.bashrc_files/wm.rb
 }
 
+# Switch to a given iTerm2 profile
+it2prof() {
+  echo -e "\033]50;SetProfile=$1\a"
+}
+
+# Analyze the current wallpaper and set the bash theme based on it
+set_current_wallpaper_theme() {
+  picture=$1
+  python ~/.bash/themes/theme-gen.py $picture --no-background --transparency 0.2 --parent bash
+  it2prof Default.Profile.Theme
+}
+
 # Run vim based on fuzzy find
 vf() {
   local files

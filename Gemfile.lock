@@ -1,19 +1,21 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (4.2.8)
+    activesupport (4.2.10)
       i18n (~> 0.7)
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    config_curator (0.5.0)
+    concurrent-ruby (1.0.5)
+    config_curator (1.0.0)
       activesupport (~> 4.2)
       thor (~> 0.19)
-    i18n (0.8.4)
-    minitest (5.10.2)
-    thor (0.19.4)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
+    minitest (5.11.3)
+    thor (0.20.0)
     thread_safe (0.3.6)
-    tzinfo (1.2.3)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
 
 PLATFORMS
@@ -23,4 +25,4 @@ DEPENDENCIES
   config_curator
 
 BUNDLED WITH
-   1.15.0
+   1.16.3
