@@ -82,6 +82,27 @@ set mat=2                       " Tenths of a second to blink matching brackets
 set splitright                  " More natural split positions
 set splitbelow
 
+" Status line
+set laststatus=2
+hi StatusLine ctermfg=black ctermbg=red cterm=NONE
+hi StatusLineNC ctermfg=black ctermbg=red cterm=NONE
+hi User1 ctermfg=black ctermbg=magenta
+hi User2 ctermfg=white ctermbg=NONE
+hi User3 ctermfg=black ctermbg=blue
+hi User4 ctermfg=black ctermbg=cyan
+set statusline=\                    " Padding
+set statusline+=%f                  " Path to the file
+set statusline+=\ %1*\              " Padding & switch colour
+set statusline+=%y                  " File type
+set statusline+=\ %2*\              " Padding & switch colour
+set statusline+=%m                  " Modified flag
+set statusline+=%=                  " Switch to right-side
+set statusline+=\ %3*\              " Padding & switch colour
+set statusline+=%l                  " Current line
+set statusline+=\ %4*\              " Padding & switch colour
+set statusline+=%L                  " Total line
+set statusline+=\                   " Padding
+
 " Text-related
 set tabstop=2                   " Use 2 spaces for indentation
 set softtabstop=2
