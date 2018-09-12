@@ -23,6 +23,7 @@ Plugin 'avakhov/vim-yaml'
 
 " Color schemes
 Plugin 'joshdick/onedark.vim'
+Plugin 'w0ng/vim-hybrid'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -57,9 +58,9 @@ filetype plugin indent on    " required
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close if last tab open
 map <silent> <C-n> :NERDTreeToggle<CR>
 
-" Color scheme and syntax highlighting
-colorscheme onedark
-syntax on
+" Color scheme
+set background=dark
+colorscheme hybrid
 
 " Wildmenu Vim command autocompletion
 set wildmenu
@@ -74,6 +75,7 @@ set shell=bash\ --login
 imap <C-z> <C-x><C-o>
 
 " UI
+syntax on
 set number                      " Line numbers
 set ruler                       " Column number in status bar
 set cursorline                  " Highlight current line
