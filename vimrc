@@ -90,8 +90,9 @@ hi StatusLine ctermfg=black ctermbg=red cterm=NONE
 hi StatusLineNC ctermfg=black ctermbg=red cterm=NONE
 hi User1 ctermfg=black ctermbg=magenta
 hi User2 ctermfg=white ctermbg=NONE
-hi User3 ctermfg=black ctermbg=blue
-hi User4 ctermfg=black ctermbg=cyan
+hi User3 ctermfg=black ctermbg=yellow
+hi User4 ctermfg=black ctermbg=blue
+hi User5 ctermfg=black ctermbg=cyan
 set statusline=\                    " Padding
 set statusline+=%f                  " Path to the file
 set statusline+=\ %1*\              " Padding & switch colour
@@ -100,8 +101,10 @@ set statusline+=\ %2*\              " Padding & switch colour
 set statusline+=%m                  " Modified flag
 set statusline+=%=                  " Switch to right-side
 set statusline+=\ %3*\              " Padding & switch colour
-set statusline+=%l                  " Current line
+set statusline+=%c                  " Current column
 set statusline+=\ %4*\              " Padding & switch colour
+set statusline+=%l                  " Current line
+set statusline+=\ %5*\              " Padding & switch colour
 set statusline+=%L                  " Total line
 set statusline+=\                   " Padding
 
