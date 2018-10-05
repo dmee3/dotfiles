@@ -86,26 +86,28 @@ set splitbelow
 
 " Status line
 set laststatus=2
-hi StatusLine ctermfg=black ctermbg=red cterm=NONE
-hi StatusLineNC ctermfg=black ctermbg=red cterm=NONE
-hi User1 ctermfg=black ctermbg=magenta
-hi User2 ctermfg=white ctermbg=NONE
-hi User3 ctermfg=black ctermbg=yellow
-hi User4 ctermfg=black ctermbg=blue
-hi User5 ctermfg=black ctermbg=cyan
+hi StatusLine ctermfg=black ctermbg=darkblue cterm=none
+hi StatusLineNC ctermfg=black ctermbg=darkblue cterm=none
+hi User1 ctermfg=darkblue ctermbg=darkgreen
+hi User2 ctermfg=black ctermbg=darkgreen
+hi User3 ctermfg=darkgreen ctermbg=none
+hi User4 ctermfg=white ctermbg=none
+hi User5 ctermfg=yellow ctermbg=none
+hi User6 ctermfg=black ctermbg=yellow
+hi User7 ctermfg=cyan ctermbg=yellow
+hi User8 ctermfg=black ctermbg=cyan
 set statusline=\                    " Padding
+set statusline+=%{ChangeSLColor()}  " Change color by mode
 set statusline+=%f                  " Path to the file
-set statusline+=\ %1*\              " Padding & switch colour
+set statusline+=\ %1*\ %2*         " Blue-green transition
 set statusline+=%y                  " File type
-set statusline+=\ %2*\              " Padding & switch colour
+set statusline+=\ %3*\ %4*         " Green-none transition
 set statusline+=%m                  " Modified flag
 set statusline+=%=                  " Switch to right-side
-set statusline+=\ %3*\              " Padding & switch colour
+set statusline+=\ %5*%6*\          " None-yellow transition
 set statusline+=%c                  " Current column
-set statusline+=\ %4*\              " Padding & switch colour
-set statusline+=%l                  " Current line
-set statusline+=\ %5*\              " Padding & switch colour
-set statusline+=%L                  " Total line
+set statusline+=\ %7*%8*\          " Yellow-cyan transition
+set statusline+=%l\ /\ %L           " Current line / total lines
 set statusline+=\                   " Padding
 
 " Text-related
@@ -154,6 +156,25 @@ function! PasteToggle()
   else
     set paste
   endif
-endfunc
-
+endfunction
 nnoremap <c-i> :call PasteToggle()<cr>
+
+" Change status line color by mode
+function! ChangeSLColor()
+	if (mode() =~# '\v(n|no)')
+    exe 'hi! StatusLine ctermfg=black ctermbg=darkblue'
+    exe 'hi! User1 ctermfg=darkblue ctermbg=darkgreen'
+  elseif (mode() =~# '\v(v|V)')
+    exe 'hi! StatusLine ctermfg=black ctermbg=darkyellow'
+    exe 'hi! User1 ctermfg=darkyellow ctermbg=darkgreen'
+  elseif (mode() ==# 'i')
+    exe 'hi! StatusLine ctermfg=black ctermbg=darkred'
+    exe 'hi! User1 ctermfg=darkred ctermbg=darkgreen'
+  else
+    exe 'hi! StatusLine ctermfg=black ctermbg=darkblue'
+    exe 'hi! User1 ctermfg=darkblue ctermbg=darkgreen'
+  endif
+
+  return ''
+endfunction
+
