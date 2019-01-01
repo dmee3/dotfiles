@@ -3,6 +3,8 @@ Collection of files containing settings for various programs
 
 ## Installation
 
+*Note: You may need to install [Homebrew](https://brew.sh/)*
+
 After cloning the repo, cd into it with `cd dotfiles` and run
 
     ruby initialize.rb
