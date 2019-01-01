@@ -46,6 +46,11 @@ run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew
 # Config Curator
 run_cmd('bundle exec curate -v', 'Curating...')
 
+# Setup iTerm2 preferences
+run_cmd('cp themes/com.googlecode.iterm2.plist ~/Library/Preferences/com.googlecode.iterm2.plist', 'Copying iTerm2 preferences...')
+run_cmd('defaults read com.googlecode.iterm2', 'deleting iTerm2 cached settings...')
+
 # Set source
 run_cmd('source ~/.bash_profile', 'Sourcing new profile...')
 
+puts "#{Colors.green}Done!  Please quit and restart iTerm2 for new settings to take effect.#{Colors.default}"
