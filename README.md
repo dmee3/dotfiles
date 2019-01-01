@@ -3,7 +3,7 @@ Collection of files containing settings for various programs
 
 ## Installation
 
-*Note: You may need to install [Homebrew](https://brew.sh/)*
+*Note: You may need to install [Homebrew](https://brew.sh/) and [Powerline Fonts](https://github.com/powerline/fonts)*
 
 After cloning the repo, cd into it with `cd dotfiles` and run
 
