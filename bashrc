@@ -7,14 +7,14 @@ source ~/.bashrc_files/functions
 source ~/.bashrc_files/git_functions
 
 # Format prompt
-export PS1="\u:\W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="\u:\W\[\033[32m\] \$(parse_git_branch)\[\033[00m\] $ "
 
 # Enable colors and customize ls command colors
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
 # Set up custom agnoster command prompt with arrows
-export THEME=$HOME/.bash/themes/agnoster-bash/agnoster.bash
+export THEME=$HOME/.bash/themes/agnoster.bash
 if [[ -f $THEME ]]; then
   export DEFAULT_USER=`whoami`
   source $THEME
