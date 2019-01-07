@@ -32,6 +32,9 @@ config_files:
   - src: bashrc
     dst: .bashrc
 
+  - src: chunkwmcolors
+    dst: .config/wal/templates/chunkwmcolors
+
   - src: chunkwmrc
     dst: .chunkwmrc
 
