@@ -24,6 +24,7 @@ Plugin 'avakhov/vim-yaml'
 " Color schemes
 Plugin 'joshdick/onedark.vim'
 Plugin 'w0ng/vim-hybrid'
+Plugin 'dylanaraps/wal.vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -59,8 +60,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 " Color scheme
+" Hybrid is default, trying wal for custom colorscheme based on wallpaper
 set background=dark
-colorscheme hybrid
+" colorscheme hybrid
+colorscheme wal
 
 " Wildmenu Vim command autocompletion
 set wildmenu
@@ -78,11 +81,15 @@ imap <C-z> <C-x><C-o>
 syntax on
 set number                      " Line numbers
 set ruler                       " Column number in status bar
-set cursorline                  " Highlight current line
 set showmatch                   " Highlight matching brackets
 set mat=2                       " Tenths of a second to blink matching brackets
 set splitright                  " More natural split positions
 set splitbelow
+
+" Cursor line
+set cursorline
+hi CursorLine ctermbg=7 ctermfg=0
+hi CursorLineNr ctermbg=7 ctermfg=0
 
 " Status line
 set laststatus=2
