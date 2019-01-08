@@ -1,10 +1,10 @@
 # Make a directory and cd into it
-mcd () {
+mcd() {
   mkdir -p $1; cd $1;
 }
 
 # Either cat a file or ls a directory
-show () {
+show() {
   if [[ -d $@ ]]; then
     ls -lah $@
   elif [[ -f $@ ]]; then
@@ -19,22 +19,21 @@ wm() {
   ruby ~/.bashrc_files/wm.rb
 }
 
-# Switch to a given iTerm2 profile
-it2prof() {
-  echo -e "\033]50;SetProfile=$1\a"
-}
-
 # Shortcut for wal command
 wp() {
-  wal -i "$HOME/Pictures/"
+  if [ -z "$1" ]; then # -z checks if expansion of "$1" is a null string
+    wal -i "$HOME/Pictures/"
+  else
+    wal -i "$HOME/Pictures/$1"
+  fi
 }
 
-# Analyze a picture's colors and set the bash theme based on it
-  set_theme_from_picture() {
-  picture=$1
-  python ~/.bash/themes/theme-gen.py $picture --no-background --transparency 0.2 --parent bash
-  it2prof Default.Profile.Theme
+# Autocomplete wp command with files in ~/Pictures directory
+_wp() {
+  local files=("$HOME/Pictures/$2"*)
+  [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##*/}" )
 }
+complete -F _wp wp
 
 # Run vim based on fuzzy find
 vf() {
