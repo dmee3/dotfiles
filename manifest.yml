@@ -13,8 +13,8 @@
 ###
 
 components:
-  - src: bashrc_files
-    dst: .bashrc_files
+  - src: bash_scripts
+    dst: .bash_scripts
 
   - src: themes
     dst: .bash/themes

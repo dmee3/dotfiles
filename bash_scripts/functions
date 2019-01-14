@@ -16,10 +16,10 @@ show() {
 
 # Toggle window manager (chunkwm and skhd)
 wm() {
-  ruby ~/.bashrc_files/wm.rb
+  ruby ~/.bash_scripts/wm.rb
 }
 
-# Shortcut for wal command
+# Shortcut for wal command, setting terminal colors and background image
 wp() {
   if [ -z "$1" ]; then # -z checks if expansion of "$1" is a null string
     wal -i "$HOME/Pictures/"
@@ -42,12 +42,23 @@ vf() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+# Quick shortcut for fff
+f() {
+  bash ~/.bash_scripts/fff "$@"
+  cd "$(< ~/.fff_d)"
+}
+
+# Customization (temporary file to use)
+# Default: '${XDG_CACHE_HOME}/fff/fff.d'
+#          If not using XDG, '${HOME}/.cache/fff/fff.d' is used.
+export FFF_CD_FILE=~/.fff_d
+
 # Sometimes you just need to vent
 fuck() {
-  ruby ~/.bashrc_files/swearjar.rb fuck "$@"
+  ruby ~/.bash_scripts/swearjar.rb fuck "$@"
 }
 shit() {
-  ruby ~/.bashrc_files/swearjar.rb shit "$@"
+  ruby ~/.bash_scripts/swearjar.rb shit "$@"
 }
 
 # Print a colorized success/failure message
