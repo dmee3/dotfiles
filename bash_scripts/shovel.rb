@@ -10,14 +10,12 @@ class MetaFile
   def enabled_dependencies
     all_dependencies
       .reject { |l| l.strip[0] == '#' }
-      # Only grab the app name
       .map { |d| d.match(/.*(\b\w+)$/).captures[0] }
   end
 
   def disabled_dependencies
     all_dependencies
       .select { |l| l.strip()[0] == '#' }
-      # Only grab the app name
       .map { |d| d.match(/.*(\b\w+)$/).captures[0] }
   end
 
