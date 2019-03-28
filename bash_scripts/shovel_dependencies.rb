@@ -1,4 +1,3 @@
-ARG_REGEX = /.*run\.([\w|-]+).*/
 ROLE_REGEX = /.*(\b\w+)$/
 DEV_DIR = '/Users/dmeehan/Stuff/CMM/dev'
 
@@ -37,13 +36,9 @@ class MetaFile
   end
 end
 
-app_name = ''
-if match = ARGV[0].match(ARG_REGEX)
-  app_name = match.captures[0]
-end
-
-if app_name == ''
-  puts "Usage: shovel run.<app_name>"
+if ARGV.length == 1
+  app_name = ARGV[0] 
+else
   exit(1)
 end
 
@@ -69,9 +64,4 @@ rescue IOError => e
   puts "\e[31mERROR GETTING APP INFO: #{e}\e[0m\n\n"
 end
 
-puts "\e[33mARE YOU SURE YOU ACTUALLY WANT TO SHOVEL????\e[0m"
-print '(y/n) '
-if STDIN.gets.strip == "y"
-  `#{DEV_DIR}/script/run shovel run.#{app_name}`
-end
-
+puts "\n"
