@@ -20,11 +20,14 @@ class MetaFile
 
   def all_dependencies
     return @dependencies if @dependencies
-    section = contents.drop_while { |l| l.strip != 'dependencies:' }
-                      .take_while { |l| !l.strip.empty? }
 
-    # Cut off the 'dependencies:' line
-    @dependencies = section.drop(1)
+    # Cut out everything before the 'dependencies:' line,
+    # then cut that line, too, then take every line until
+    # you find an empty line or the end of the file
+    @dependencies ||= contents
+      .drop_while { |l| l.strip != 'dependencies:' }
+      .drop(1)
+      .take_while { |l| !l.strip.empty? }
   end
 
   private
