@@ -1,70 +1,62 @@
-ROLE_REGEX = /.*(\b\w+)$/
 DEV_DIR = '/Users/dmeehan/Stuff/CMM/dev'
 
-class MetaFile
-  def initialize(app_name)
-    @path = "#{DEV_DIR}/roles/#{app_name}/meta/main.yml"
+module Colors
+  RED = "\e[31m"
+  GREEN = "\e[32m"
+  YELLOW = "\e[33m"
+  DEFAULT = "\e[0m"
+end
+
+class Metadata
+  def initialize(container_name, ancestors, enabled)
+    @container_name = container_name
+    @ancestors = ancestors
+    @enabled = enabled
   end
 
-  def enabled_dependencies
-    all_dependencies
-      .reject { |l| l.strip[0] == '#' }
-      .map { |d| d.match(/.*(\b\w+)$/).captures[0] }
+  def print_dependencies
+    color = @enabled ? Colors::GREEN : Colors::RED
+    str = "#{'| ' * (@ancestors.length)}- #{color}#{@container_name}#{Colors::DEFAULT}\n"
+    return str unless @enabled
+
+    dependencies.each { |dep| str << dep.print_dependencies }
+    str
   end
 
-  def disabled_dependencies
-    all_dependencies
-      .select { |l| l.strip()[0] == '#' }
-      .map { |d| d.match(/.*(\b\w+)$/).captures[0] }
-  end
+  def dependencies
+    @dependencies ||= [].tap do |deps|
+      role_list.each do |role|
+        dep_name = role.match(/.*(\b\w+)$/).captures[0]
 
-  def all_dependencies
-    return @dependencies if @dependencies
-
-    # Cut out everything before the 'dependencies:' line,
-    # then cut that line, too, then take every line until
-    # you find an empty line or the end of the file
-    @dependencies ||= contents
-      .drop_while { |l| l.strip != 'dependencies:' }
-      .drop(1)
-      .take_while { |l| !l.strip.empty? }
+        # Avoid infinite recursion by skipping dependencies already in the tree
+        if !@ancestors.include?(dep_name)
+          deps << Metadata.new(dep_name, @ancestors + [@container_name], role[0] != '#')
+        end
+      end
+    end
   end
 
   private
 
-  def contents
-    return @contents if @contents
-    raise IOError.new('Meta file does not exist') unless File.file?(@path)
-    File.open(@path) { |f| @contents = f.readlines }
+  def role_list
+    path = "#{DEV_DIR}/roles/#{@container_name}/meta/main.yml"
+    return [] unless File.file?(path)
+
+    # List format (disabled entries will be commented out)
+    # 
+    # dependencies:
+    #   - role: <app>
+    #   - role: <app>
+    @role_list ||= File.open(path) do |f|
+      f.readlines
+        .drop_while { |l| l.strip != 'dependencies:' }
+        .drop(1)
+        .map { |l| l.strip }
+        .take_while { |l| l =~ /- role: / }
+    end
   end
 end
 
-if ARGV.length == 1
-  app_name = ARGV[0] 
-else
-  exit(1)
-end
-
-puts "\e[34mSHOVELING #{app_name.upcase}\e[0m\n\n"
-
-begin
-  meta = MetaFile.new(app_name)
-  enabled = meta.enabled_dependencies
-  disabled = meta.disabled_dependencies
-
-  unless enabled.empty?
-    puts "\e[32mENABLED DEPENDENCIES\e[0m"
-    enabled.each { |d| puts " - #{d}" }
-    puts "\n"
-  end
-
-  unless disabled.empty?
-    puts "\e[31mDISABLED DEPENDENCIES\e[0m"
-    disabled.each { |d| puts " - #{d}" }
-    puts "\n"
-  end
-rescue IOError => e
-  puts "\e[31mERROR GETTING APP INFO: #{e}\e[0m\n\n"
-end
-
-puts "\n"
+exit(1) unless ARGV.length == 1
+meta = Metadata.new(ARGV[0], [], true)
+puts "#{Colors::YELLOW}DEPENDENCIES#{Colors::DEFAULT}\n#{meta.print_dependencies}\n"
