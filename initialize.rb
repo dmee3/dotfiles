@@ -57,7 +57,7 @@ run_cmd_with_status(`brew install imagemagick`, 'Installing imagemagick...', '  
 # Pywal (custom color schemes by background)
 #
 pip_list = `pip3 list`
-run_cmd_with_status(`pip3 install pywal`, "#{Colors.blue}Installing pywal...#{Colors.default}") unless pip_list ~/pywal/
+run_cmd_with_status(`pip3 install pywal`, "#{Colors.blue}Installing pywal...#{Colors.default}") unless pip_list =~ /pywal/
 
 #
 # Config Curator
