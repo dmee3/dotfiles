@@ -6,25 +6,28 @@ source ~/.bash_scripts/aliases
 source ~/.bash_scripts/functions
 source ~/.bash_scripts/git_functions
 
-# Format prompt
-export PS1="\u:\W\[\033[32m\] \$(parse_git_branch)\[\033[00m\] $ "
-
 # Enable colors and customize ls command colors
 export CLICOLOR=1
 export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-# Set up custom agnoster command prompt with arrows
-export THEME=$HOME/.bash/themes/agnoster.bash
-if [[ -f $THEME ]]; then
-  export DEFAULT_USER=`whoami`
-  source $THEME
-fi
+# Format prompt with directory and git info (if possible)
+set_bash_prompt() {
+  if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    branch_name="$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/')"
+  else
+    branch_name=""
+  fi
 
-# Override some of the agnoster defaults
-prompt_context() {
-  prompt_segment black default "$USER"
+  if [[ -n $(git status -s 2> /dev/null | tail -n 1) ]]; then
+    branch_color="\[\e[1;33m\]" # Yellow
+  else
+    branch_color="\[\e[1;32m\]" # Green
+  fi
+
+  PS1="\W ${branch_color}${branch_name}\[\e[0m\] $ "
 }
-prompt_histdt() { :; }
+PROMPT_COMMAND=set_bash_prompt
 
 # Load machine-specific settings last
 source ~/.machine_profile
+

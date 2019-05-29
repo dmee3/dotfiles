@@ -38,6 +38,9 @@ config_files:
   - src: chunkwmrc
     dst: .chunkwmrc
 
+  - src: hushlogin
+    dst: .hushlogin
+
   - src: inputrc
     dst: .inputrc
 
