@@ -16,7 +16,7 @@ class OverrideList
     str = list.join("\n")
     return str if list.include?(@container_name)
 
-    str << "\n#{Colors::RED}WARNING: #{@container_name} is not in local overrides!\n"
+    str << "\n\n#{Colors::RED}WARNING: #{@container_name} is not in local overrides!"
   end
 
   def list
@@ -90,5 +90,6 @@ end
 
 exit(1) unless ARGV.length == 1
 meta = Metadata.new(ARGV[0], [], true)
-puts "#{Colors::YELLOW}LOCAL APPS#{Colors::DEFAULT}\n#{OverrideList.new(ARGV[0]).print}\n"
+overrides = OverrideList.new(ARGV[0])
+puts "#{Colors::YELLOW}LOCAL APPS#{Colors::DEFAULT}\n#{overrides.print}\n\n"
 puts "#{Colors::YELLOW}DEPENDENCIES#{Colors::DEFAULT}\n#{meta.print_dependencies}\n"
