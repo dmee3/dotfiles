@@ -1,10 +1,41 @@
-DEV_DIR = '/Users/dmeehan/Stuff/CMM/dev'
+DEV_DIR = '/Users/dmeehan/Stuff/CMM/dev'.freeze
 
 module Colors
-  RED = "\e[31m"
-  GREEN = "\e[32m"
-  YELLOW = "\e[33m"
-  DEFAULT = "\e[0m"
+  RED = "\e[31m".freeze
+  GREEN = "\e[32m".freeze
+  YELLOW = "\e[33m".freeze
+  DEFAULT = "\e[0m".freeze
+end
+
+class OverrideList
+  def initialize(container_name)
+    @container_name = container_name
+  end
+
+  def print
+    str = list.join("\n")
+    return str if list.include?(@container_name)
+
+    str << "\n#{Colors::RED}WARNING: #{@container_name} is not in local overrides!\n"
+  end
+
+  def list
+    path = "#{DEV_DIR}/local_override.yaml"
+    return [] unless File.file?(path)
+
+    # List format
+    #
+    # local_development:
+    #   cmm_php
+    #   eulas
+    #   account
+    @override_list ||= File.open(path) do |f|
+      f.readlines
+       .drop_while { |l| l.strip != 'local_development:' }
+       .drop(1)
+       .map(&:strip)
+    end
+  end
 end
 
 class Metadata
@@ -16,7 +47,7 @@ class Metadata
 
   def print_dependencies
     color = @enabled ? Colors::GREEN : Colors::RED
-    str = "#{'| ' * (@ancestors.length)}- #{color}#{@container_name}#{Colors::DEFAULT}\n"
+    str = "#{'| ' * @ancestors.length}- #{color}#{@container_name}#{Colors::DEFAULT}\n"
     return str unless @enabled
 
     dependencies.each { |dep| str << dep.print_dependencies }
@@ -29,7 +60,7 @@ class Metadata
         dep_name = role.match(/.*(\b\w+)$/).captures[0]
 
         # Avoid infinite recursion by skipping dependencies already in the tree
-        if !@ancestors.include?(dep_name)
+        unless @ancestors.include?(dep_name)
           deps << Metadata.new(dep_name, @ancestors + [@container_name], role[0] != '#')
         end
       end
@@ -43,20 +74,21 @@ class Metadata
     return [] unless File.file?(path)
 
     # List format (disabled entries will be commented out)
-    # 
+    #
     # dependencies:
     #   - role: <app>
     #   - role: <app>
     @role_list ||= File.open(path) do |f|
       f.readlines
-        .drop_while { |l| l.strip != 'dependencies:' }
-        .drop(1)
-        .map { |l| l.strip }
-        .take_while { |l| l =~ /- role: / }
+       .drop_while { |l| l.strip != 'dependencies:' }
+       .drop(1)
+       .map(&:strip)
+       .take_while { |l| l =~ /- role: / }
     end
   end
 end
 
 exit(1) unless ARGV.length == 1
 meta = Metadata.new(ARGV[0], [], true)
+puts "#{Colors::YELLOW}LOCAL APPS#{Colors::DEFAULT}\n#{OverrideList.new(ARGV[0]).print}\n"
 puts "#{Colors::YELLOW}DEPENDENCIES#{Colors::DEFAULT}\n#{meta.print_dependencies}\n"
