@@ -25,6 +25,9 @@ Plugin 'avakhov/vim-yaml'
 Plugin 'joshdick/onedark.vim'
 Plugin 'w0ng/vim-hybrid'
 Plugin 'dylanaraps/wal.vim'
+Plugin 'sainnhe/vim-color-forest-night'
+Plugin 'sainnhe/vim-color-vanilla-cake'
+Plugin 'sainnhe/vim-color-desert-night'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
