@@ -20,20 +20,20 @@ wm() {
 }
 
 # Shortcut for wal command, setting terminal colors and background image
-wp() {
-  if [ -z "$1" ]; then # -z checks if expansion of "$1" is a null string
-    wal -i "$HOME/Pictures/"
-  else
-    wal -i "$HOME/Pictures/$1"
-  fi
-}
+# wp() {
+#   if [ -z "$1" ]; then # -z checks if expansion of "$1" is a null string
+#     wal -i "$HOME/Pictures/"
+#   else
+#     wal -i "$HOME/Pictures/$1"
+#   fi
+# }
 
 # Autocomplete wp command with files in ~/Pictures directory
-_wp() {
-  local files=("$HOME/Pictures/$2"*)
-  [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##*/}" )
-}
-complete -F _wp wp
+# _wp() {
+#   local files=("$HOME/Pictures/$2"*)
+#   [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##*/}" )
+# }
+# complete -F _wp wp
 
 # Run vim based on fuzzy find
 vf() {
