@@ -50,14 +50,14 @@ end
 run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
 
 # Needed for pywal
-run_cmd_with_status(`brew install python`, 'Installing Python 3 with pip3...', '  ') unless brew_list =~ /python/
-run_cmd_with_status(`brew install imagemagick`, 'Installing imagemagick...', '  ') unless brew_list =~ /imagemagick/
+# run_cmd_with_status(`brew install python`, 'Installing Python 3 with pip3...', '  ') unless brew_list =~ /python/
+# run_cmd_with_status(`brew install imagemagick`, 'Installing imagemagick...', '  ') unless brew_list =~ /imagemagick/
 
 #
 # Pywal (custom color schemes by background)
 #
-pip_list = `pip3 list`
-run_cmd_with_status(`pip3 install pywal`, "#{Colors.blue}Installing pywal...#{Colors.default}") unless pip_list =~ /pywal/
+# pip_list = `pip3 list`
+# run_cmd_with_status(`pip3 install pywal`, "#{Colors.blue}Installing pywal...#{Colors.default}") unless pip_list =~ /pywal/
 
 #
 # Config Curator
