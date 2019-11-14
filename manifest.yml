@@ -32,20 +32,11 @@ config_files:
   - src: bashrc
     dst: .bashrc
 
-  - src: chunkwmcolors
-    dst: .config/wal/templates/chunkwmcolors
-
-  - src: chunkwmrc
-    dst: .chunkwmrc
-
   - src: hushlogin
     dst: .hushlogin
 
   - src: inputrc
     dst: .inputrc
-
-  - src: skhdrc
-    dst: .skhdrc
 
   - src: pryrc
     dst: .pryrc
