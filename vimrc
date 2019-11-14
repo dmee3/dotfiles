@@ -91,7 +91,7 @@ set splitbelow
 
 " Cursor line
 set cursorline
-hi CursorLine ctermbg=7 ctermfg=0
+hi CursorLine ctermbg=15
 hi CursorLineNr ctermbg=7 ctermfg=0
 
 " Status line
