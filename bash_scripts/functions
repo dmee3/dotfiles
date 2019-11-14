@@ -3,22 +3,6 @@ mcd() {
   mkdir -p $1; cd $1;
 }
 
-# Either cat a file or ls a directory
-show() {
-  if [[ -d $@ ]]; then
-    ls -lah $@
-  elif [[ -f $@ ]]; then
-    cat $@
-  else
-    echo "show: $@: No such file or directory"
-  fi
-}
-
-# Toggle window manager (chunkwm and skhd)
-wm() {
-  ruby ~/.bash_scripts/wm.rb
-}
-
 # Shortcut for wal command, setting terminal colors and background image
 # wp() {
 #   if [ -z "$1" ]; then # -z checks if expansion of "$1" is a null string
@@ -52,14 +36,6 @@ f() {
 # Default: '${XDG_CACHE_HOME}/fff/fff.d'
 #          If not using XDG, '${HOME}/.cache/fff/fff.d' is used.
 export FFF_CD_FILE=~/.fff_d
-
-# Sometimes you just need to vent
-fuck() {
-  ruby ~/.bash_scripts/swearjar.rb fuck "$@"
-}
-shit() {
-  ruby ~/.bash_scripts/swearjar.rb shit "$@"
-}
 
 # Print a colorized success/failure message
 report_status() {
