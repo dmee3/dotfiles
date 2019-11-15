@@ -43,3 +43,6 @@ config_files:
 
   - src: vimrc
     dst: .vimrc
+
+  - src: zshrc
+    dst: .zshrc

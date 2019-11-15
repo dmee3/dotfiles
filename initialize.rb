@@ -39,15 +39,16 @@ run_cmd('bundle install', 'Bundle installing...')
 #
 puts "#{Colors.blue}Brewing formulae...#{Colors.default}"
 brew_list = `brew ls`
+run_cmd_with_status('brew install bat', 'Installing bat...', '  ') unless brew_list =~ /bat/
 run_cmd_with_status('brew install fzf', 'Installing fzf...', '  ') unless brew_list =~ /fzf/
-run_cmd_with_status('brew install highlight', 'Installing highlight...', '  ') unless brew_list =~ /highlight/
+run_cmd_with_status('brew install fff', 'Installing fff...', '  ') unless brew_list =~ /fff/
 
 # Window manager
-unless brew_list =~ /chunkwm/
-  run_cmd_with_status('brew tap koekeishiya/formulae', 'Tapping chunkwm cask...', '  ')
-  run_cmd_with_status('brew install chunkwm', 'Installing chunkwm...', '  ')
-end
-run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
+#unless brew_list =~ /chunkwm/
+#  run_cmd_with_status('brew tap koekeishiya/formulae', 'Tapping chunkwm cask...', '  ')
+#  run_cmd_with_status('brew install chunkwm', 'Installing chunkwm...', '  ')
+#end
+#run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
 
 # Needed for pywal
 # run_cmd_with_status(`brew install python`, 'Installing Python 3 with pip3...', '  ') unless brew_list =~ /python/

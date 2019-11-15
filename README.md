@@ -17,16 +17,14 @@ This should take care of everything for you.  It's jank as hell so results may v
 
 ## Brew Dependencies
 All of these should be handled by `initialize.rb`
-- fzf ([Fuzzy finder](https://github.com/junegunn/fzf))
-- chunkwm ([Window manager](https://github.com/koekeishiya/chunkwm))
-- skhd ([Shortcuts for chunkwm](https://github.com/koekeishiya/skhd))
+- bat ([Cat but better](https://github.com/sharkdp/bat))
+- fzf ([Fuzzy Finder](https://github.com/junegunn/fzf))
+- fff ([Fucking Fast File Manager](https://github.com/dylanaraps/fff))
+- ~chunkwm ([Window manager](https://github.com/koekeishiya/chunkwm))~
+- ~skhd ([Shortcuts for chunkwm](https://github.com/koekeishiya/skhd))~
 
 ## Vim Plugins
 
-Vim plugins aren't installed by default, but plugins are referenced in the vimrc file and ready to be managed by Vundle.
-To begin, run
+Vim plugins aren't installed by default, but plugins are referenced in the vimrc file and ready to be managed by Vim-Plug.
+To begin, simply open vim and run `:PluginInstall` to download and install all plugins.
 
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-
-Once the Vundle repo is cloned, open Vim and run `:PluginInstall` to download and install all plugins.
-`:PluginUpdate` may need to be run as well.
