@@ -1,60 +1,31 @@
-set nocompatible " be iMproved, required for Vundle
-filetype off " required for Vundle
-set rtp+=~/.vim/bundle/Vundle.vim "Set runtime path to include Vundle
-call vundle#begin()
+" Grab vim-plug if needed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Use vim-plug for plugin management https://github.com/junegunn/vim-plug/
+call plug#begin('~/.vim/plugged')
 
 " NERDTree - File explorer
-Plugin 'scrooloose/nerdtree'
-
-" Indentation guides - toggle with \ig
-Plugin 'nathanaelkane/vim-indent-guides'
-
-" CoffeeScript support
-Plugin 'kchmck/vim-coffee-script'
-
-" Elixir support
-Plugin 'elixir-lang/vim-elixir'
+Plug 'scrooloose/nerdtree'
 
 " YAML support
-Plugin 'avakhov/vim-yaml'
+Plug 'avakhov/vim-yaml'
+
+" Distraction-free writing
+Plug 'junegunn/goyo.vim'
 
 " Color schemes
-Plugin 'joshdick/onedark.vim'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'dylanaraps/wal.vim'
-Plugin 'sainnhe/vim-color-forest-night'
-Plugin 'sainnhe/vim-color-vanilla-cake'
-Plugin 'sainnhe/vim-color-desert-night'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall   - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+Plug 'w0ng/vim-hybrid'
+Plug 'junegunn/seoul256.vim'
+Plug 'dylanaraps/wal.vim'
+Plug 'joshdick/onedark.vim'
+Plug 'sainnhe/vim-color-forest-night'
+Plug 'sainnhe/vim-color-vanilla-cake'
+Plug 'sainnhe/vim-color-desert-night'
+call plug#end()
 
 " NERDTree
 " autocmd vimenter * NERDTree " Open automatically on startup
@@ -63,10 +34,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 " Color scheme
-" Hybrid is default, trying wal for custom colorscheme based on wallpaper
+" Hybrid is my default go-to, trying out seoul
 set background=dark
-" colorscheme hybrid
-colorscheme wal
+" colo hybrid
+colo seoul256
 
 " Wildmenu Vim command autocompletion
 set wildmenu
@@ -81,9 +52,7 @@ set shell=bash\ --login
 imap <C-z> <C-x><C-o>
 
 " UI
-syntax on
 set number                      " Line numbers
-set ruler                       " Column number in status bar
 set showmatch                   " Highlight matching brackets
 set mat=2                       " Tenths of a second to blink matching brackets
 set splitright                  " More natural split positions
@@ -91,34 +60,22 @@ set splitbelow
 
 " Cursor line
 set cursorline
-hi CursorLine ctermbg=15
-hi CursorLineNr ctermbg=7 ctermfg=0
+"hi CursorLine ctermbg=15
+"hi CursorLineNr ctermbg=7 ctermfg=0
 
 " Status line
 set laststatus=2
-hi StatusLine ctermfg=black ctermbg=darkblue cterm=none
-hi StatusLineNC ctermfg=black ctermbg=darkblue cterm=none
-hi User1 ctermfg=darkblue ctermbg=darkgreen
-hi User2 ctermfg=black ctermbg=darkgreen
-hi User3 ctermfg=darkgreen ctermbg=none
-hi User4 ctermfg=white ctermbg=none
-hi User5 ctermfg=yellow ctermbg=none
-hi User6 ctermfg=black ctermbg=yellow
-hi User7 ctermfg=cyan ctermbg=yellow
-hi User8 ctermfg=black ctermbg=cyan
-set statusline=\                    " Padding
-set statusline+=%{ChangeSLColor()}  " Change color by mode
-set statusline+=%f                  " Path to the file
-set statusline+=\ %1*\ %2*         " Blue-green transition
-set statusline+=%y                  " File type
-set statusline+=\ %3*\ %4*         " Green-none transition
-set statusline+=%m                  " Modified flag
-set statusline+=%=                  " Switch to right-side
-set statusline+=\ %5*%6*\          " None-yellow transition
-set statusline+=%c                  " Current column
-set statusline+=\ %7*%8*\          " Yellow-cyan transition
-set statusline+=%l\ /\ %L           " Current line / total lines
-set statusline+=\                   " Padding
+set statusline=\                   " Padding
+"set statusline+=%{ChangeSLColor()} " Color
+set statusline+=\ %f               " File
+set statusline+=\ %y               " File type
+set statusline+=\ %m               " Modified flag
+set statusline+=\                  " Padding
+"set statusline+=%#CursorColumn#    " Color
+set statusline+=%=                 " Switch to right side
+set statusline+=\ %p%%             " Percent of file
+set statusline+=\ %l:%c            " Line : Column
+set statusline+=\                  " Padding
 
 " Text-related
 set tabstop=2                   " Use 2 spaces for indentation
@@ -171,18 +128,14 @@ nnoremap <c-i> :call PasteToggle()<cr>
 
 " Change status line color by mode
 function! ChangeSLColor()
-	if (mode() =~# '\v(n|no)')
-    exe 'hi! StatusLine ctermfg=black ctermbg=darkblue'
-    exe 'hi! User1 ctermfg=darkblue ctermbg=darkgreen'
+  if (mode() =~# '\v(n|no)')
+    exe 'hi! StatusLine term=bold,reverse cterm=bold,reverse ctermfg=95 ctermbg=187'
   elseif (mode() =~# '\v(v|V)')
-    exe 'hi! StatusLine ctermfg=black ctermbg=darkyellow'
-    exe 'hi! User1 ctermfg=darkyellow ctermbg=darkgreen'
+    exe 'hi! StatusLine ctermfg=23 ctermbg=187'
   elseif (mode() ==# 'i')
-    exe 'hi! StatusLine ctermfg=black ctermbg=darkred'
-    exe 'hi! User1 ctermfg=darkred ctermbg=darkgreen'
+    exe 'hi! StatusLine term=bold ctermfg=131 ctermbg=236'
   else
-    exe 'hi! StatusLine ctermfg=black ctermbg=darkblue'
-    exe 'hi! User1 ctermfg=darkblue ctermbg=darkgreen'
+    exe 'hi! StatusLine term=bold,reverse cterm=bold,reverse ctermfg=95 ctermbg=187'
   endif
 
   return ''
