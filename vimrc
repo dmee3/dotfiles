@@ -60,22 +60,6 @@ set splitbelow
 
 " Cursor line
 set cursorline
-"hi CursorLine ctermbg=15
-"hi CursorLineNr ctermbg=7 ctermfg=0
-
-" Status line
-set laststatus=2
-set statusline=\                   " Padding
-"set statusline+=%{ChangeSLColor()} " Color
-set statusline+=\ %f               " File
-set statusline+=\ %y               " File type
-set statusline+=\ %m               " Modified flag
-set statusline+=\                  " Padding
-"set statusline+=%#CursorColumn#    " Color
-set statusline+=%=                 " Switch to right side
-set statusline+=\ %p%%             " Percent of file
-set statusline+=\ %l:%c            " Line : Column
-set statusline+=\                  " Padding
 
 " Text-related
 set tabstop=2                   " Use 2 spaces for indentation
@@ -126,18 +110,70 @@ function! PasteToggle()
 endfunction
 nnoremap <c-i> :call PasteToggle()<cr>
 
+" Hide mode from bottom of screen
+set noshowmode
+
+" Default statusline color
+hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
+
+" Status line
+set laststatus=2
+set statusline=
+set statusline+=%{ChangeSLColor()}                  " Set current highlight color
+set statusline+=\                                   " Padding
+set statusline+=%{toupper(g:currentmode[mode()])}   " Current mode
+set statusline+=\                                   " Padding
+set statusline+=%1*                                 " User color
+set statusline+=\ %f                                " File path
+set statusline+=\ %y                                " File type
+set statusline+=\ %m                                " Modified flag
+set statusline+=\                                   " Padding
+set statusline+=%=                                  " Switch to right side
+set statusline+=%*                                  " Back to StatusLine Color
+set statusline+=\ %l/%L\ :\ %c                      " Line/Total : Column
+set statusline+=\                                   " Padding
+
+au InsertEnter * call ChangeSLColor()
+au InsertLeave * call ChangeSLColor()
+
+let g:currentmode={
+   \ 'n'  : 'N ',
+   \ 'no' : 'N·Operator Pending ',
+   \ 'v'  : 'V ',
+   \ 'V'  : 'V·Line ',
+   \ 'x22' : 'V·Block ',
+   \ 's'  : 'Select ',
+   \ 'S'  : 'S·Line ',
+   \ 'x19' : 'S·Block ',
+   \ 'i'  : 'I ',
+   \ 'R'  : 'R ',
+   \ 'Rv' : 'V·Replace ',
+   \ 'c'  : 'Command ',
+   \ 'cv' : 'Vim Ex ',
+   \ 'ce' : 'Ex ',
+   \ 'r'  : 'Prompt ',
+   \ 'rm' : 'More ',
+   \ 'r?' : 'Confirm ',
+   \ '!'  : 'Shell ',
+   \ 't'  : 'Terminal '
+   \}
+
 " Change status line color by mode
 function! ChangeSLColor()
   if (mode() =~# '\v(n|no)')
-    exe 'hi! StatusLine term=bold,reverse cterm=bold,reverse ctermfg=95 ctermbg=187'
-  elseif (mode() =~# '\v(v|V)')
-    exe 'hi! StatusLine ctermfg=23 ctermbg=187'
+    hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+    hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
+  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
+    hi StatusLine term=bold,reverse ctermfg=37 ctermbg=236 gui=bold guifg=#6FBCBD guibg=#3F3F3F
+    hi User1 term=bold,reverse ctermfg=236 ctermbg=73 guifg=#999872 guibg=#565656
   elseif (mode() ==# 'i')
-    exe 'hi! StatusLine term=bold ctermfg=131 ctermbg=236'
+    hi StatusLine term=bold,reverse ctermfg=131 ctermbg=236 gui=bold guifg=#BE7572 guibg=#3F3F3F
+    hi User1 term=bold,reverse ctermfg=236 ctermbg=95 guifg=#999872 guibg=#565656
   else
-    exe 'hi! StatusLine term=bold,reverse cterm=bold,reverse ctermfg=95 ctermbg=187'
+    hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+    hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
   endif
-
   return ''
 endfunction
 
