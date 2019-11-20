@@ -67,3 +67,9 @@ zstyle :compinstall filename '/Users/Dan/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# Auto-suggestions
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Syntax highlight command line
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
