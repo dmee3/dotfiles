@@ -17,6 +17,16 @@ Plug 'avakhov/vim-yaml'
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
 
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
+
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Multi-line comments
+Plug 'tpope/vim-commentary'
+
 " Color schemes
 Plug 'w0ng/vim-hybrid'
 Plug 'junegunn/seoul256.vim'
@@ -83,9 +93,13 @@ set incsearch " Incremental search results
 map j gj
 map k gk
 
-" Use fzf and add quick command
-let g:fzf_opts = '--preview-window right:70% --preview "highlight -O ansi -l --failsafe {}"'
-set rtp+=/usr/local/opt/fzf
+" Configure CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" Configure fzf and add quick commands
+let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_opts = '--preview-window right:70% --preview "bat --style=numbers --color=always {}"'
 command! -bang ZV call fzf#run(fzf#wrap({'sink': 'vs', 'options': fzf_opts}, <bang>0))
 command! -bang ZS call fzf#run(fzf#wrap({'sink': 'sp', 'options': fzf_opts}, <bang>0))
 command! -bang ZE call fzf#run(fzf#wrap({'sink': 'e', 'options': fzf_opts}, <bang>0))
