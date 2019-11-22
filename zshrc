@@ -46,14 +46,18 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
 alias h="history"
 alias l="ls -lah"
 alias chrome="open -a /Applications/Google\ Chrome.app"
 
+# Tool replacements
+alias cat="bat"
+alias vim="nvim"
+
 # Ruby/Rails aliases
+alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
 alias s="bundle exec rspec"
 alias berc="bundle exec rails c"
 alias bers="bundle exec rails s"

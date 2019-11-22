@@ -97,12 +97,33 @@ map k gk
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
-" Configure fzf and add quick commands
-let g:fzf_layout = { 'down': '~40%' }
-let g:fzf_opts = '--preview-window right:70% --preview "bat --style=numbers --color=always {}"'
-command! -bang ZV call fzf#run(fzf#wrap({'sink': 'vs', 'options': fzf_opts}, <bang>0))
-command! -bang ZS call fzf#run(fzf#wrap({'sink': 'sp', 'options': fzf_opts}, <bang>0))
-command! -bang ZE call fzf#run(fzf#wrap({'sink': 'e', 'options': fzf_opts}, <bang>0))
+" Configure fzf.vim for NeoVim or Vim
+let $FZF_DEFAULT_OPTS .= '--color fg:242,bg:236,hl:65,fg+:15,bg+:239,hl+:108 --color info:108,prompt:109,spinner:108,pointer:168,marker:168'
+if has('nvim')
+  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+  function! FloatingFZF()
+    let buf = nvim_create_buf(v:false, v:true)
+    call setbufvar(buf, '&signcolumn', 'no')
+
+    let height = float2nr(&lines * 0.5)
+    let width = float2nr(&columns * 0.8)
+    let col = float2nr((&columns - width) / 2)
+    let row = 1
+
+    let opts = {
+          \ 'relative': 'editor',
+          \ 'row': row,
+          \ 'col': col,
+          \ 'width': width,
+          \ 'height': height
+          \ }
+
+    call nvim_open_win(buf, v:true, opts)
+  endfunction
+else
+  let g:fzf_layout = { 'down': '~40%' }
+  let g:fzf_opts = '--preview-window right:70% --preview "bat --style=numbers --color=always {} || cat {}"'
+endif
 
 " Relative or absolute number lines
 function! NumberToggle()
