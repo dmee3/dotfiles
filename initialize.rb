@@ -43,9 +43,9 @@ run_cmd_with_status('brew install bat', 'Installing bat...', '  ') unless brew_l
 run_cmd_with_status('brew install fzf', 'Installing fzf...', '  ') unless brew_list =~ /fzf/
 run_cmd_with_status('brew install fff', 'Installing fff...', '  ') unless brew_list =~ /fff/
 run_cmd_with_status('brew install neovim', 'Installing neovim...', '  ') unless brew_list =~ /neovim/
-run_cmd_with_status('brew install zsh-syntax-highlighting', 'Installing zsh syntax highlighting...', ' ' unless brew_list =~ /zsh-syntax-highlighting/
-run_cmd_with_status('brew install zsh-autosuggestions', 'Installing zsh autosuggestions...', ' ' unless brew_list =~ /zsh-autosuggestions/
-run_cmd_with_status('brew install zsh-completions', 'Installing more zsh completions...', ' ' unless brew_list =~ /zsh-completions/
+run_cmd_with_status('brew install zsh-syntax-highlighting', 'Installing zsh syntax highlighting...', ' ') unless brew_list =~ /zsh-syntax-highlighting/
+run_cmd_with_status('brew install zsh-autosuggestions', 'Installing zsh autosuggestions...', ' ') unless brew_list =~ /zsh-autosuggestions/
+run_cmd_with_status('brew install zsh-completions', 'Installing more zsh completions...', ' ') unless brew_list =~ /zsh-completions/
 
 # Window manager
 #unless brew_list =~ /chunkwm/
