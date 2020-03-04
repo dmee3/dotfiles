@@ -1,6 +1,11 @@
 # Save history to ~/.zsh_history
 HISTFILE=${ZDOTDIR:-$HOME}/.zsh_history
 
+# Automatically run the ssh agent
+if ! ssh-add -L >/dev/null; then
+  ssh-add -K
+fi
+
 # Enable correction of tpyos
 setopt CORRECT
 setopt CORRECT_ALL
@@ -14,32 +19,32 @@ bindkey $'^[[A' up-line-or-search    # up arrow
 bindkey $'^[[B' down-line-or-search  # down arrow
 
 # Enable colors and prompt substitution
-setopt prompt_subst
-autoload -U colors && colors
+#setopt prompt_subst
+#autoload -U colors && colors
 
 # Echoes information about Git repository status when inside a Git repository
-git_info() {
-
-  # Exit if not inside a Git repository
-  ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
-
-  # Git branch/tag, or name-rev if on detached head
-  local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
-
-  # Dot colored green for clean, yellow for dirty
-  local GIT_DOT="%{$fg[green]%}●%{$reset_color%}"
-  if [[ -n $(git status -s 2> /dev/null | tail -n 1) ]]; then
-    GIT_DOT="%{$fg[yellow]%}●%{$reset_color%}"
-  fi
-
-  # Build git info
-  local -a GIT_INFO
-  GIT_INFO+=( "$GIT_LOCATION $GIT_DOT%{$reset_color%}" )
-  echo "${(j: :)GIT_INFO} "
-}
-
-# Build command line
-PS1='%B%F{240}%1~%f%b $(git_info)%% '
+#git_info() {
+#
+#  # Exit if not inside a Git repository
+#  ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
+#
+#  # Git branch/tag, or name-rev if on detached head
+#  local GIT_LOCATION=${$(git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD)#(refs/heads/|tags/)}
+#
+#  # Dot colored green for clean, yellow for dirty
+#  local GIT_DOT="%{$fg[green]%}●%{$reset_color%}"
+#  if [[ -n $(git status -s 2> /dev/null | tail -n 1) ]]; then
+#    GIT_DOT="%{$fg[yellow]%}●%{$reset_color%}"
+#  fi
+#
+#  # Build git info
+#  local -a GIT_INFO
+#  GIT_INFO+=( "$GIT_LOCATION $GIT_DOT%{$reset_color%}" )
+#  echo "${(j: :)GIT_INFO} "
+#}
+#
+## Build command line
+#PS1='%B%F{240}%1~%f%b $(git_info)%% '
 
 # aliases
 alias ..="cd .."
@@ -77,3 +82,12 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlight command line
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ASDF config
+. $(brew --prefix asdf)/asdf.sh
+. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
+
+eval "$(starship init zsh)"
+
+# Store custom, device-specific configuration in ~/.machine-profile
+. ~/.machine_profile

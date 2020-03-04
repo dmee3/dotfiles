@@ -16,6 +16,7 @@ Plug 'avakhov/vim-yaml'
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 " fzf
 Plug '/usr/local/opt/fzf'
