@@ -10,9 +10,13 @@ call plug#begin('~/.vim/plugged')
 
 " NERDTree - File explorer
 Plug 'scrooloose/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
-" YAML support
-Plug 'avakhov/vim-yaml'
+" Language support
+Plug 'sheerun/vim-polyglot'
+
+" Intellisense
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -28,14 +32,19 @@ Plug 'ctrlpvim/ctrlp.vim'
 " Multi-line comments
 Plug 'tpope/vim-commentary'
 
+" Auto-insert matching bracket pair
+Plug 'jiangmiao/auto-pairs'
+
 " Color schemes
 Plug 'w0ng/vim-hybrid'
 Plug 'junegunn/seoul256.vim'
+Plug 'morhetz/gruvbox'
 Plug 'dylanaraps/wal.vim'
 Plug 'joshdick/onedark.vim'
-Plug 'sainnhe/vim-color-forest-night'
-Plug 'sainnhe/vim-color-vanilla-cake'
-Plug 'sainnhe/vim-color-desert-night'
+Plug 'sainnhe/forest-night'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'morhetz/gruvbox'
+Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 call plug#end()
 
 " NERDTree
@@ -45,25 +54,22 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 " Color scheme
-" Hybrid is my default go-to, trying out seoul
 set background=dark
-" colo hybrid
-colo seoul256
+colorscheme palenight
 
-" Wildmenu Vim command autocompletion
-set wildmenu
+hi Normal guibg=NONE ctermbg=NONE
 
-" Autocompletion for code
-set omnifunc=syntaxcomplete#Complete
+syntax on
 
-" Source ~/.bash_profile when using the :sh command
-set shell=bash\ --login
+" Spell check
+setlocal spell
+set spelllang=en_us
 
-" Map autocomplete to <C-z>
-imap <C-z> <C-x><C-o>
+" Use zsh for shell
+set shell=zsh\ --login
 
 " UI
-set number                      " Line numbers
+set number relativenumber       " Line numbers
 set showmatch                   " Highlight matching brackets
 set mat=2                       " Tenths of a second to blink matching brackets
 set splitright                  " More natural split positions
@@ -72,12 +78,14 @@ set splitbelow
 " Cursor line
 set cursorline
 
-" Text-related
+" Indents
 set tabstop=2                   " Use 2 spaces for indentation
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 autocmd Filetype php setlocal tabstop=4 shiftwidth=4 " 4-space indentation in PHP
+
+" Other text-related
 set ai                          " Auto indent
 set si                          " Smart indent
 set wrap                        " Wrap lines
@@ -146,70 +154,94 @@ function! PasteToggle()
 endfunction
 nnoremap <c-i> :call PasteToggle()<cr>
 
-" Hide mode from bottom of screen
-set noshowmode
+" Enter Goyo with opt+z
+nnoremap Ω :Goyo<CR>
 
-" Default statusline color
-hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-
-" Status line
-set laststatus=2
-set statusline=
-set statusline+=%{ChangeSLColor()}                  " Set current highlight color
-set statusline+=\                                   " Padding
-set statusline+=%{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=\                                   " Padding
-set statusline+=%1*                                 " User color
-set statusline+=\ %f                                " File path
-set statusline+=\ %y                                " File type
-set statusline+=\ %m                                " Modified flag
-set statusline+=\                                   " Padding
-set statusline+=%=                                  " Switch to right side
-set statusline+=%*                                  " Back to StatusLine Color
-set statusline+=\ %l/%L\ :\ %c                      " Line/Total : Column
-set statusline+=\                                   " Padding
-
-au InsertEnter * call ChangeSLColor()
-au InsertLeave * call ChangeSLColor()
-
-let g:currentmode={
-   \ 'n'  : 'N ',
-   \ 'no' : 'N·Operator Pending ',
-   \ 'v'  : 'V ',
-   \ 'V'  : 'V·Line ',
-   \ 'x22' : 'V·Block ',
-   \ 's'  : 'Select ',
-   \ 'S'  : 'S·Line ',
-   \ 'x19' : 'S·Block ',
-   \ 'i'  : 'I ',
-   \ 'R'  : 'R ',
-   \ 'Rv' : 'V·Replace ',
-   \ 'c'  : 'Command ',
-   \ 'cv' : 'Vim Ex ',
-   \ 'ce' : 'Ex ',
-   \ 'r'  : 'Prompt ',
-   \ 'rm' : 'More ',
-   \ 'r?' : 'Confirm ',
-   \ '!'  : 'Shell ',
-   \ 't'  : 'Terminal '
-   \}
-
-" Change status line color by mode
-function! ChangeSLColor()
-  if (mode() =~# '\v(n|no)')
-    hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-    hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-  elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-    hi StatusLine term=bold,reverse ctermfg=37 ctermbg=236 gui=bold guifg=#6FBCBD guibg=#3F3F3F
-    hi User1 term=bold,reverse ctermfg=236 ctermbg=73 guifg=#999872 guibg=#565656
-  elseif (mode() ==# 'i')
-    hi StatusLine term=bold,reverse ctermfg=131 ctermbg=236 gui=bold guifg=#BE7572 guibg=#3F3F3F
-    hi User1 term=bold,reverse ctermfg=236 ctermbg=95 guifg=#999872 guibg=#565656
-  else
-    hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-    hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-  endif
-  return ''
+" Customize Goyo to use Limelight and quit if it's the last buffer
+function! s:goyo_enter()
+  let b:quitting = 0
+  let b:quitting_bang = 0
+  autocmd QuitPre <buffer> let b:quitting = 1
+  cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
 endfunction
+
+function! s:goyo_leave()
+  " Quit Vim if this is the only remaining buffer
+  if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+    if b:quitting_bang
+      qa!
+    else
+      qa
+    endif
+  endif
+endfunction
+
+autocmd! User GoyoEnter call <SID>goyo_enter()
+autocmd! User GoyoLeave call <SID>goyo_leave()
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" " Default statusline color
+" hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+" hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
+" 
+" " Status line
+" set laststatus=2
+" set statusline=
+" set statusline+=%{ChangeSLColor()}                  " Set current highlight color
+" set statusline+=\                                   " Padding
+" set statusline+=%{toupper(g:currentmode[mode()])}   " Current mode
+" set statusline+=\                                   " Padding
+" set statusline+=%1*                                 " User color
+" set statusline+=\ %f                                " File path
+" set statusline+=\ %y                                " File type
+" set statusline+=\ %m                                " Modified flag
+" set statusline+=\                                   " Padding
+" set statusline+=%=                                  " Switch to right side
+" set statusline+=%*                                  " Back to StatusLine Color
+" set statusline+=\ %l/%L\ :\ %c                      " Line/Total : Column
+" set statusline+=\                                   " Padding
+" 
+" au InsertEnter * call ChangeSLColor()
+" au InsertLeave * call ChangeSLColor()
+" 
+" let g:currentmode={
+"    \ 'n'  : 'N ',
+"    \ 'no' : 'N·Operator Pending ',
+"    \ 'v'  : 'V ',
+"    \ 'V'  : 'V·Line ',
+"    \ 'x22' : 'V·Block ',
+"    \ 's'  : 'Select ',
+"    \ 'S'  : 'S·Line ',
+"    \ 'x19' : 'S·Block ',
+"    \ 'i'  : 'I ',
+"    \ 'R'  : 'R ',
+"    \ 'Rv' : 'V·Replace ',
+"    \ 'c'  : 'Command ',
+"    \ 'cv' : 'Vim Ex ',
+"    \ 'ce' : 'Ex ',
+"    \ 'r'  : 'Prompt ',
+"    \ 'rm' : 'More ',
+"    \ 'r?' : 'Confirm ',
+"    \ '!'  : 'Shell ',
+"    \ 't'  : 'Terminal '
+"    \}
+" 
+" " Change status line color by mode
+" function! ChangeSLColor()
+"   if (mode() =~# '\v(n|no)')
+"     hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+"     hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
+"   elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
+"     hi StatusLine term=bold,reverse ctermfg=37 ctermbg=236 gui=bold guifg=#6FBCBD guibg=#3F3F3F
+"     hi User1 term=bold,reverse ctermfg=236 ctermbg=73 guifg=#999872 guibg=#565656
+"   elseif (mode() ==# 'i')
+"     hi StatusLine term=bold,reverse ctermfg=131 ctermbg=236 gui=bold guifg=#BE7572 guibg=#3F3F3F
+"     hi User1 term=bold,reverse ctermfg=236 ctermbg=95 guifg=#999872 guibg=#565656
+"   else
+"     hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
+"     hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
+"   endif
+"   return ''
+" endfunction
 

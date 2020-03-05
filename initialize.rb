@@ -39,6 +39,9 @@ run_cmd('bundle install', 'Bundle installing...')
 #
 puts "#{Colors.blue}Brewing formulae...#{Colors.default}"
 brew_list = `brew ls`
+run_cmd_with_status('brew tap homebrew/cask-fonts', 'Tapping font cask...')
+run_cmd_with_status('brew cask install font-hack-nerd-font', 'Installing Hack...') unless brew_list =~ /font-hack-nerd-font/
+run_cmd_with_status('brew cask install font-firacode-nerd-font', 'Installing Fira Code...') unless brew_list =~ /font-firacode-nerd-font/
 run_cmd_with_status('brew install bat', 'Installing bat...', '  ') unless brew_list =~ /bat/
 run_cmd_with_status('brew install fzf', 'Installing fzf...', '  ') unless brew_list =~ /fzf/
 run_cmd_with_status('brew install fff', 'Installing fff...', '  ') unless brew_list =~ /fff/

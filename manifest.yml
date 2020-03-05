@@ -19,6 +19,8 @@ components:
   - src: themes
     dst: .bash/themes
 
+  - src: config
+    dst: .config
 
 ###
 # Config files are copied individually
