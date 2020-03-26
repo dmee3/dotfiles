@@ -3,4 +3,4 @@ let &packpath=&runtimepath
 
 source ~/.vimrc
 source ~/.config/nvim/statusline.vim
-" source ~/.config/nvim/coc-config.vim
+source ~/.config/nvim/coc-config.vim

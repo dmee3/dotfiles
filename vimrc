@@ -16,7 +16,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'sheerun/vim-polyglot'
 
 " Intellisense
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Distraction-free writing
 Plug 'junegunn/goyo.vim'
@@ -77,6 +77,9 @@ set splitbelow
 
 " Cursor line
 set cursorline
+
+" Vertical guide line
+set colorcolumn=100
 
 " Indents
 set tabstop=2                   " Use 2 spaces for indentation
@@ -157,7 +160,11 @@ nnoremap <c-i> :call PasteToggle()<cr>
 " Enter Goyo with opt+z
 nnoremap Ω :Goyo<CR>
 
-" Customize Goyo to use Limelight and quit if it's the last buffer
+" Customize Goyo
+"   - 80% width
+"   - Use Limelight
+"   - Quit if it's the last buffer
+let g:goyo_width = '80%'
 function! s:goyo_enter()
   let b:quitting = 0
   let b:quitting_bang = 0
@@ -180,6 +187,9 @@ autocmd! User GoyoEnter call <SID>goyo_enter()
 autocmd! User GoyoLeave call <SID>goyo_leave()
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
+
+" Set in case some colorschemes can't calculate dimming color
+let g:limelight_conceal_ctermfg = 240
 
 " " Default statusline color
 " hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656

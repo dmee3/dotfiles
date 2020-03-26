@@ -4,3 +4,7 @@
 [git_branch]
 symbol = ""
 style = "yellow"
+
+[nodejs]
+disabled = true
+
