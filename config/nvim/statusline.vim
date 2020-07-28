@@ -3,40 +3,42 @@
 function! ModeColors(mode)
   " Normal mode
   if a:mode == 'n'
-    hi fgc ctermfg=0 ctermbg=5
-    hi powerline ctermfg=5
-    hi fgc_b ctermfg=5 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=3
+    hi SLSpecialCharAccent ctermfg=3
+    hi SLineAccentInverse ctermfg=3 ctermbg=0
   " Insert mode
   elseif a:mode == 'i'
-    hi fgc ctermfg=0 ctermbg=3
-    hi powerline ctermfg=3
-    hi fgc_b ctermfg=3 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=5
+    hi SLSpecialCharAccent ctermfg=5
+    hi SLineAccentInverse ctermfg=5 ctermbg=0
   " Replace mode
   elseif a:mode == 'R'
-    hi fgc ctermfg=0 ctermbg=13
-    hi powerline ctermfg=13
-    hi fgc_b ctermfg=13 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=13
+    hi SLSpecialCharAccent ctermfg=13
+    hi SLineAccentInverse ctermfg=13 ctermbg=0
   " Visual mode
   elseif a:mode == 'v' || a:mode == 'V' || a:mode == ""
-    hi fgc ctermfg=0 ctermbg=1
-    hi powerline ctermfg=1
-    hi fgc_b ctermfg=1 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=2
+    hi SLSpecialCharAccent ctermfg=2
+    hi SLineAccentInverse ctermfg=2 ctermbg=0
   " Command mode
   elseif a:mode == 'c'
-    hi fgc ctermfg=0 ctermbg=4 
-    hi powerline ctermfg=4 
-    hi fgc_b ctermfg=4 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=4
+    hi SLSpecialCharAccent ctermfg=4
+    hi SLineAccentInverse ctermfg=4 ctermbg=0
   " Terminal mode
   elseif a:mode == 't'
-    hi fgc ctermfg=0 ctermbg=6
-    hi powerline ctermfg=6 
-    hi fgc_b ctermfg=6 ctermbg=8
+    hi SLineAccent ctermfg=0 ctermbg=6
+    hi SLSpecialCharAccent ctermfg=6
+    hi SLineAccentInverse ctermfg=6 ctermbg=0
   endif
 
-  " entering and exiting out of goyo messes with this so I just set it every time
-  hi powerline_b ctermfg=8 ctermbg=NONE " termsp=NONE term=NONE cterm=NONE
+  " Entering/exiting goyo messes with this, so just set it every time we update
+  hi SLineSpecialChar ctermfg=8 ctermbg=NONE
+  hi SLine ctermfg=7 ctermbg=8
 
-  " Return empty string so as not to display anything in the statusline
+
+  " Return empty string so we don't display anything in the statusline
   return ''
 endfunction
 
@@ -66,44 +68,42 @@ function! ModeName(mode)
   endif
 endfunction
 
-hi modified_powerline_b ctermfg=0
-hi modified_fgc ctermfg=0 ctermbg=8
 function! Modified(modified)
   if a:modified == 1
-    hi modified_powerline_b ctermfg=8 ctermbg=NONE
-    hi modified_fgc ctermfg=1 ctermbg=8
+    return '●'
   else
-    hi modified_powerline_b ctermfg=0 ctermbg=NONE
-    hi modified_fgc ctermfg=0 ctermbg=0
+    return ' '
   endif
-  return '●'
-endfunction
-
-function! BufNum()
-  return len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
 endfunction
 
 set noshowmode
 set laststatus=2
 set statusline=
 
-" Update colors when ya do
+" Update colors for current mode
 set statusline+=%{ModeColors(mode())}
 
 " Mode
-set statusline+=%#powerline#%#fgc#%{ModeName(mode())}%#powerline#
+set statusline+=%#SLSpecialCharAccent#
+set statusline+=%#SLineAccent#%{ModeName(mode())}
 set statusline+=\ 
 
 " Filename
-set statusline+=%#powerline_b#%#fgc_b#%.20f%#powerline_b#
+set statusline+=%#SLine#\ %.20f
+set statusline+=%#SLineSpecialChar#
 set statusline+=\ 
 
 " Right Side
 set statusline+=%=
 
-" Modified 
-set statusline+=%#modified_powerline_b#%#modified_fgc#%{Modified(&modified)}%#modified_powerline_b#
+" Scroll info
+set statusline+=%#SLineSpecialChar#
+set statusline+=%#SLine#☰\ %2l\ \/\ %L
+set statusline+=%#SLineSpecialChar#
 set statusline+=\ 
 
-" Number of buffers
-set statusline+=%#powerline#%#fgc#%{BufNum()}%#powerline#
+" Modified
+set statusline+=
+set statusline+=%#SLineAccentInverse#%{Modified(&modified)}
+set statusline+=%#SLineSpecialChar#
+

@@ -719,11 +719,15 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>566 2428 620 392 -1044 1120 3840 2137 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>46 80 836 994 0 0 1792 1097 </string>
+	<string>941 54 801 994 0 0 1792 1120 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>4685 1331 570 467 1792 0 3840 2137 </string>
+	<string>941 54 801 994 0 0 1792 1120 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>663 198 570 467 0 0 1792 1097 </string>
+	<string>2770 105 892 943 1792 40 1920 1057 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>2953 90 1095 501 1792 0 3840 2137 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>3518 90 535 501 1792 0 3840 2137 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -958,7 +962,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Recycle</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Description</key>
@@ -1376,14 +1380,14 @@
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
-		<string>{{1792, 0}, {3840, 2160}}</string>
+		<string>{{1792, 40}, {1920, 1080}}</string>
 		<key>topLeft</key>
-		<string>{4171, 1146}</string>
+		<string>{2083, 849}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>7450E527-1A3E-4CD0-9EAE-5323EB7427A2</string>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>16</integer>
+	<integer>18</integer>
 	<key>NoSyncNeverPromptToChangeOption</key>
 	<true/>
 	<key>NoSyncNextAnnoyanceTime</key>
@@ -2152,7 +2156,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-03-05T14:43:39Z</date>
+	<date>2020-04-09T23:57:15Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
