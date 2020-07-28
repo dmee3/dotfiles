@@ -3,19 +3,19 @@
 function! ModeColors(mode)
   " Normal mode
   if a:mode == 'n'
-    hi SLineAccent ctermfg=0 ctermbg=3
-    hi SLSpecialCharAccent ctermfg=3
-    hi SLineAccentInverse ctermfg=3 ctermbg=0
+    hi SLineAccent ctermfg=0 ctermbg=7
+    hi SLSpecialCharAccent ctermfg=7
+    hi SLineAccentInverse ctermfg=7 ctermbg=0
   " Insert mode
   elseif a:mode == 'i'
+    hi SLineAccent ctermfg=0 ctermbg=1
+    hi SLSpecialCharAccent ctermfg=1
+    hi SLineAccentInverse ctermfg=1 ctermbg=0
+  " Replace mode
+  elseif a:mode == 'R'
     hi SLineAccent ctermfg=0 ctermbg=5
     hi SLSpecialCharAccent ctermfg=5
     hi SLineAccentInverse ctermfg=5 ctermbg=0
-  " Replace mode
-  elseif a:mode == 'R'
-    hi SLineAccent ctermfg=0 ctermbg=13
-    hi SLSpecialCharAccent ctermfg=13
-    hi SLineAccentInverse ctermfg=13 ctermbg=0
   " Visual mode
   elseif a:mode == 'v' || a:mode == 'V' || a:mode == ""
     hi SLineAccent ctermfg=0 ctermbg=2
@@ -45,26 +45,26 @@ endfunction
 " Return a nice mode name
 function! ModeName(mode)
   if a:mode == 'n'
-    return 'NORMAL'
+    return 'N'
   " Insert mode
   elseif a:mode == 'i'
-    return 'INSERT'
+    return 'I'
   " Replace mode
   elseif a:mode == 'R'
-    return 'REPLACE'
+    return 'R'
   " Visual mode
   elseif a:mode == 'v'
-    return 'VISUAL'
+    return 'V'
   elseif a:mode == 'V'
-    return "V-LINE"
+    return "V-L"
   elseif a:mode == ""
-    return "V-BLOCK"
+    return "V-B"
   " Command mode
   elseif a:mode == 'c'
-    return 'COMMAND'
+    return 'C'
   " Terminal mode
   elseif a:mode == 't'
-    return 'TERMINAL'
+    return 'T'
   endif
 endfunction
 
