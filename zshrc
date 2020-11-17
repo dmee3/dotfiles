@@ -85,7 +85,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ASDF config
 . $(brew --prefix asdf)/asdf.sh
-. $(brew --prefix asdf)/etc/bash_completion.d/asdf.bash
 
 eval "$(starship init zsh)"
 
