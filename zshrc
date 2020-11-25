@@ -90,3 +90,6 @@ eval "$(starship init zsh)"
 
 # Store custom, device-specific configuration in ~/.machine-profile
 . ~/.machine_profile
+
+# Custom functions
+. ~/.zsh_scripts

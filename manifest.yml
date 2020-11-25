@@ -13,9 +13,6 @@
 ###
 
 components:
-  - src: bash_scripts
-    dst: .bash_scripts
-
   - src: themes
     dst: .bash/themes
 
@@ -28,11 +25,8 @@ components:
 ###
 
 config_files:
-  - src: bash_profile
-    dst: .bash_profile
-
-  - src: bashrc
-    dst: .bashrc
+  - src: zsh_scripts
+    dst: .zsh_scripts
 
   - src: hushlogin
     dst: .hushlogin
