@@ -54,12 +54,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <C-n> :NERDTreeToggle<CR>
 
 " Color scheme
-set background=dark
-colorscheme palenight
-
-hi Normal guibg=NONE ctermbg=NONE
-
 syntax on
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
+" Override colorscheme bg color to be the terminal color
+hi Normal guibg=NONE ctermbg=NONE
+hi nonText guibg=NONE ctermbg=NONE
 
 " Spell check
 setlocal spell
@@ -190,68 +192,4 @@ autocmd! User GoyoLeave Limelight!
 
 " Set in case some colorschemes can't calculate dimming color
 let g:limelight_conceal_ctermfg = 240
-
-" " Default statusline color
-" hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-" hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-" 
-" " Status line
-" set laststatus=2
-" set statusline=
-" set statusline+=%{ChangeSLColor()}                  " Set current highlight color
-" set statusline+=\                                   " Padding
-" set statusline+=%{toupper(g:currentmode[mode()])}   " Current mode
-" set statusline+=\                                   " Padding
-" set statusline+=%1*                                 " User color
-" set statusline+=\ %f                                " File path
-" set statusline+=\ %y                                " File type
-" set statusline+=\ %m                                " Modified flag
-" set statusline+=\                                   " Padding
-" set statusline+=%=                                  " Switch to right side
-" set statusline+=%*                                  " Back to StatusLine Color
-" set statusline+=\ %l/%L\ :\ %c                      " Line/Total : Column
-" set statusline+=\                                   " Padding
-" 
-" au InsertEnter * call ChangeSLColor()
-" au InsertLeave * call ChangeSLColor()
-" 
-" let g:currentmode={
-"    \ 'n'  : 'N ',
-"    \ 'no' : 'N·Operator Pending ',
-"    \ 'v'  : 'V ',
-"    \ 'V'  : 'V·Line ',
-"    \ 'x22' : 'V·Block ',
-"    \ 's'  : 'Select ',
-"    \ 'S'  : 'S·Line ',
-"    \ 'x19' : 'S·Block ',
-"    \ 'i'  : 'I ',
-"    \ 'R'  : 'R ',
-"    \ 'Rv' : 'V·Replace ',
-"    \ 'c'  : 'Command ',
-"    \ 'cv' : 'Vim Ex ',
-"    \ 'ce' : 'Ex ',
-"    \ 'r'  : 'Prompt ',
-"    \ 'rm' : 'More ',
-"    \ 'r?' : 'Confirm ',
-"    \ '!'  : 'Shell ',
-"    \ 't'  : 'Terminal '
-"    \}
-" 
-" " Change status line color by mode
-" function! ChangeSLColor()
-"   if (mode() =~# '\v(n|no)')
-"     hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-"     hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-"   elseif (mode() =~# '\v(v|V)' || g:currentmode[mode()] ==# 'V·Block' || get(g:currentmode, mode(), '') ==# 't')
-"     hi StatusLine term=bold,reverse ctermfg=37 ctermbg=236 gui=bold guifg=#6FBCBD guibg=#3F3F3F
-"     hi User1 term=bold,reverse ctermfg=236 ctermbg=73 guifg=#999872 guibg=#565656
-"   elseif (mode() ==# 'i')
-"     hi StatusLine term=bold,reverse ctermfg=131 ctermbg=236 gui=bold guifg=#BE7572 guibg=#3F3F3F
-"     hi User1 term=bold,reverse ctermfg=236 ctermbg=95 guifg=#999872 guibg=#565656
-"   else
-"     hi StatusLine term=bold,reverse ctermfg=65 ctermbg=236 guifg=#999872 guibg=#565656
-"     hi User1 term=bold,reverse ctermfg=236 ctermbg=101 guifg=#999872 guibg=#565656
-"   endif
-"   return ''
-" endfunction
 

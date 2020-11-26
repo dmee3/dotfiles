@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # Make a directory and cd into it
 mcd() {
   mkdir -p $1; cd $1;
@@ -26,25 +28,10 @@ vf() {
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
-# Quick shortcut for fff
-f() {
-  bash ~/.bash_scripts/fff "$@"
-  cd "$(< ~/.fff_d)"
-}
-
 # Customization (temporary file to use)
 # Default: '${XDG_CACHE_HOME}/fff/fff.d'
 #          If not using XDG, '${HOME}/.cache/fff/fff.d' is used.
 export FFF_CD_FILE=~/.fff_d
-
-# Print a colorized success/failure message
-report_status() {
-  if [ $1 == 0 ]; then
-    echo -e "\033[0;32mSUCCESS\033[0m"
-  else
-    echo -e "\033[0;31mFAILURE\033[0m"
-  fi
-}
 
 # Prints all colors and codes
 colorgrid() {
@@ -80,3 +67,5 @@ colorgrid() {
   echo -en "\e[0m"
 }
 
+# Open vs code
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
