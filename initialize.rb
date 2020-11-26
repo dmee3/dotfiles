@@ -53,13 +53,6 @@ run_cmd_with_status('brew install zsh-syntax-highlighting', 'Installing zsh synt
 run_cmd_with_status('brew install zsh-autosuggestions', 'Installing zsh autosuggestions...', ' ') unless brew_list =~ /zsh-autosuggestions/
 run_cmd_with_status('brew install zsh-completions', 'Installing more zsh completions...', ' ') unless brew_list =~ /zsh-completions/
 
-# Window manager
-#unless brew_list =~ /chunkwm/
-#  run_cmd_with_status('brew tap koekeishiya/formulae', 'Tapping chunkwm cask...', '  ')
-#  run_cmd_with_status('brew install chunkwm', 'Installing chunkwm...', '  ')
-#end
-#run_cmd_with_status(`brew install skhd`, 'Installing skhd...', '  ') unless brew_list =~ /skhd/
-
 # Needed for pywal
 # run_cmd_with_status(`brew install python`, 'Installing Python 3 with pip3...', '  ') unless brew_list =~ /python/
 # run_cmd_with_status(`brew install imagemagick`, 'Installing imagemagick...', '  ') unless brew_list =~ /imagemagick/
