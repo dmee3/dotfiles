@@ -8,7 +8,7 @@ adapted from https://github.com/adamhollett/dotfiles
 
 After cloning the repo, cd into it with `cd dotfiles` and run
 
-    .setup.sh
+    ./setup.sh
 
 ## Notes
 
