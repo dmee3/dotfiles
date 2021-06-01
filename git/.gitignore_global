@@ -1,0 +1,16 @@
+# MacOS
+
+## General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Thumbnails
+._*
+
+## VS Code
+.vscode
+
+# Windows
+
+## Nothing yet
