@@ -22,6 +22,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
+" Smooth scrolling
+Plug 'psliwka/vim-smoothie'
+
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
