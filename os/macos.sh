@@ -3,6 +3,7 @@
 print_header "setting up macOS"
 
 brew install bat
+brew install curlie
 brew install fff
 brew install fzf
 brew install git-delta
