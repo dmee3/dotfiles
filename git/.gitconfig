@@ -16,3 +16,18 @@
 [core]
   editor = vim
   excludesfile = ~/.gitignore_global
+
+[pager]
+  diff = delta
+  log = delta
+  reflog = delta
+	show = delta
+
+[delta]
+  side-by-side = true
+  syntax-theme = OneHalfDark
+  line-numbers-zero-style = "normal"
+
+[interactive]
+  diffFilter = delta --color-only
+

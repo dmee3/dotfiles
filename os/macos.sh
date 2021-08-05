@@ -5,6 +5,8 @@ print_header "setting up macOS"
 brew install bat
 brew install fff
 brew install fzf
+brew install git-delta
+brew install lsd
 brew install neovim
 
 # Symlinks
