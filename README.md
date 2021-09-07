@@ -4,7 +4,9 @@ adapted from https://github.com/adamhollett/dotfiles
 
 ## Installation
 
-*Note: You may need to install [Homebrew](https://brew.sh/) and [Powerline Fonts](https://github.com/powerline/fonts)*
+*Note: You may need to install the following dependencies by hand:*
+- *[Homebrew](https://brew.sh/)*
+- *[Powerline Fonts](https://github.com/powerline/fonts)*
 
 After cloning the repo, cd into it with `cd dotfiles` and run
 
@@ -14,13 +16,16 @@ After cloning the repo, cd into it with `cd dotfiles` and run
 
 ## Brew Dependencies
 All of these should be handled by `setup.sh`
+- asdf ([ASDF](https://github.com/asdf-vm/asdf))
 - bat ([Cat but better](https://github.com/sharkdp/bat))
-- curlie ([Curlie](https://github.com/rs/curlie))
+- [Curlie](https://github.com/rs/curlie)
 - fzf ([Fuzzy Finder](https://github.com/junegunn/fzf))
 - fff ([Fucking Fast File Manager](https://github.com/dylanaraps/fff))
 - git-delta ([Delta](https://github.com/dandavison/delta))
 - lsd ([LSDeluxe](https://github.com/Peltoche/lsd))
 - neovim ([NeoVim](https://neovim.io/))
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 
 ## Vim Plugins
 
