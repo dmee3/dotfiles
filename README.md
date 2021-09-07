@@ -20,6 +20,7 @@ All of these should be handled by `setup.sh`
 - fff ([Fucking Fast File Manager](https://github.com/dylanaraps/fff))
 - git-delta ([Delta](https://github.com/dandavison/delta))
 - lsd ([LSDeluxe](https://github.com/Peltoche/lsd))
+- neovim ([NeoVim](https://neovim.io/))
 
 ## Vim Plugins
 
