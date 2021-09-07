@@ -15,8 +15,11 @@ After cloning the repo, cd into it with `cd dotfiles` and run
 ## Brew Dependencies
 All of these should be handled by `setup.sh`
 - bat ([Cat but better](https://github.com/sharkdp/bat))
+- curlie ([Curlie](https://github.com/rs/curlie))
 - fzf ([Fuzzy Finder](https://github.com/junegunn/fzf))
 - fff ([Fucking Fast File Manager](https://github.com/dylanaraps/fff))
+- git-delta ([Delta](https://github.com/dandavison/delta))
+- lsd ([LSDeluxe](https://github.com/Peltoche/lsd))
 
 ## Vim Plugins
 
