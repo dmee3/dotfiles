@@ -4,4 +4,6 @@
 # from there to make sure our options are always loaded.
 
 source ~/.zprofile
-[[ -e ~/.umt/umt-profile ]] && emulate sh -c 'source $HOME/.umt/umt-profile'
+
+# Source any machine-specific settings, if they exist
+[[ -e ~/.machine-profile ]] && source ~/.machine-profile
