@@ -2,6 +2,9 @@
 
 print_header "setting up macOS"
 
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+
 brew install asdf
 brew install bat
 brew install curlie

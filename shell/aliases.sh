@@ -18,7 +18,8 @@ alias berc='bundle exec rails c'
 alias bers='bundle exec rails s'
 
 # Misc
-alias l='ls -laHG'
+alias cat='bat'
+alias l='lsd -la'
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
 # Fun
