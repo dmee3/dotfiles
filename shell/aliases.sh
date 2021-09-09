@@ -1,5 +1,9 @@
 #!/bin/false
 
+# Terminal Navigation
+alias ..='cd ../'
+alias ...='cd ../../'
+
 # Editor
 alias vim='nvim'
 
