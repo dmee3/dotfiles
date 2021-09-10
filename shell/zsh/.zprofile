@@ -22,5 +22,9 @@ source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Syntax highlight command line
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Incremental search with arrows
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
 # ASDF config
 . $(brew --prefix asdf)/asdf.sh
