@@ -3,6 +3,9 @@
 # .zprofile is the user-specific initialization file for zsh, and is read
 # by both login and interactive shells, unlike .zshrc.
 
+# Brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 source ~/Stuff/dotfiles/shell/common.sh
 source ~/Stuff/dotfiles/shell/zsh/functions.zsh
 source ~/Stuff/dotfiles/shell/zsh/prompt.zsh
