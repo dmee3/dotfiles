@@ -7,6 +7,12 @@ alias ...='cd ../../'
 # Editor
 alias vim='nvim'
 
+# Git
+alias gst='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gcm='git commit -m'
+
 # Ruby
 alias be='bundle exec'
 alias bi='bundle install'
@@ -14,6 +20,8 @@ alias bu='bundle update'
 
 ## Rails/RSpec
 alias s='bundle exec rspec'
+alias brc='bin/rails c'
+alias brs='bin/rails s'
 alias berc='bundle exec rails c'
 alias bers='bundle exec rails s'
 
