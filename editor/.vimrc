@@ -6,7 +6,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " Use vim-plug for plugin management https://github.com/junegunn/vim-plug/
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 
 " NERDTree - File explorer
 Plug 'scrooloose/nerdtree'
