@@ -30,4 +30,4 @@ bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
 # ASDF config
-. $(brew --prefix asdf)/asdf.sh
+. /usr/local/opt/asdf/libexec/asdf.sh
