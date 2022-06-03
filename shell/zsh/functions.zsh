@@ -83,7 +83,7 @@ git_status_color () {
 git_branch () {
   local gitBranch="$(git_check)"
   if [[ $gitBranch && ! $gitBranch == 'master' && $COLUMNS -gt 79 ]]; then
-    echo -en "%F{#616161}⌥%f %F{"$(git_status_color)"}$gitBranch%f"
+    echo -en "%F{#616161}⌥ $gitBranch%f"
   fi
 }
 
