@@ -4,7 +4,7 @@
 # by both login and interactive shells, unlike .zshrc.
 
 # Brew
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(`brew --prefix`/bin/brew shellenv)"
 
 source ~/Stuff/dotfiles/shell/common.sh
 source ~/Stuff/dotfiles/shell/zsh/functions.zsh
@@ -20,10 +20,10 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 # Auto-suggestions
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source `brew --prefix`/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Syntax highlight command line
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source `brew --prefix`/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Incremental search with arrows
 bindkey "^[[A" history-beginning-search-backward

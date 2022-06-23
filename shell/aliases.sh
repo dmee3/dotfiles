@@ -18,6 +18,9 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
 
+# Use Brew'd Universal ctags
+alias ctags="`brew --prefix`/bin/ctags"
+
 ## Rails/RSpec
 alias s='bundle exec rspec'
 alias brc='bin/rails c'
