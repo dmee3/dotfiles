@@ -43,6 +43,10 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'      " file explorer window
   Plug 'ryanoasis/vim-devicons'   " fancy icons
 
+  " Status bar
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+
   " Intellisense
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -85,6 +89,29 @@ call plug#end()
 "
 " ---- Plugin Settings -------------------------------------------------------
 "
+"  airline {
+  " stops other insert modes from showing
+  let g:airline_mode_map = {}
+  let g:airline_mode_map['ic'] = 'INSERT'
+  " display all buffers if one tab open
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#tab_nr_type = 1  " buffer/tab number
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
+  " how file paths are shown (they're not)
+  let g:airline#extensions#tabline#fnamemod = ':t'
+  let g:airline_powerline_fonts = 1             " powerline integration
+  let g:airline_theme='bubblegum'               " status bar theme
+  let g:airline#extensions#tagbar#enabled = 1   " show where in file you are
+  let g:airline#extensions#tagbar#flags = 'f'
+  let g:airline#extensions#coc#enabled = 1
+  let g:airline_detect_modified = 0             " stop color change of filepath
+  let g:airline_section_c = airline#section#create(["%{expand('%:p:~:h:h:t')}/%{expand('%:p:h:t')}/%{expand('%:t')}"])
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.modified = ''
+" }
+
 " NERDTree {
   " autocmd vimenter * NERDTree " Open automatically on startup
   " autocmd vimenter * wincmd w " Switch from NERDTree to opened buffer on startup
