@@ -14,7 +14,7 @@ set cursorline                           " highlight current line
 set colorcolumn=100                      " vertical guideline at column 100
 set signcolumn=yes numberwidth=6         " signcolumn and available width
 set tabstop=2 softtabstop=2              " use 2 spaces for indentation
-set expandtab shiftwidth=2 
+set expandtab shiftwidth=2
 set ai                                   " auto indent
 set si                                   " smart indent
 set wrap                                 " wrap lines
@@ -95,6 +95,7 @@ call plug#end()
   let g:airline_mode_map['ic'] = 'INSERT'
   " display all buffers if one tab open
   let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#buffer_min_count =2 " auto hide tab bar when only 1 buffer open
   let g:airline#extensions#tabline#tab_nr_type = 1  " buffer/tab number
   let g:airline#extensions#tabline#buffer_idx_mode = 1
   " how file paths are shown (they're not)
@@ -105,11 +106,16 @@ call plug#end()
   let g:airline#extensions#tagbar#flags = 'f'
   let g:airline#extensions#coc#enabled = 1
   let g:airline_detect_modified = 0             " stop color change of filepath
+  let g:airline_detect_spell=0                  " hide spelling/language
+  let g:airline_skip_empty_sections = 1         " remove separators for empty sections
+
+  " config for specific sections
   let g:airline_section_c = airline#section#create(["%{expand('%:p:~:h:h:t')}/%{expand('%:p:h:t')}/%{expand('%:t')}"])
   if !exists('g:airline_symbols')
     let g:airline_symbols = {}
-  endif
+  endif 
   let g:airline_symbols.modified = ''
+  let g:airline_section_y=''                    " remove the encoding section
 " }
 
 " NERDTree {

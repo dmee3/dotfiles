@@ -12,6 +12,7 @@ alias gst='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gs='git branch | fzf | git switch'
 
 # Ruby
 alias be='bundle exec'
