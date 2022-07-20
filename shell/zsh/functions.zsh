@@ -55,9 +55,11 @@ git_status () {
   fi
 }
 
-# Return a color based on the current git status.
+# Return a color based on the git status passed in as $1
+# Note: passing this in prevents calling `git status` twice
+# which slows down considerably in large repos
 git_status_color () {
-  local gitStatus="$(git_status)"
+  local gitStatus=$1
   local statusText=''
   case $gitStatus in
     clean*)
@@ -101,7 +103,7 @@ git_dot () {
     if [[ $gitCheck && ! $gitCheck == 'master' && $COLUMNS -lt 80 ]]; then
       echo -en "%F{#616161}⌥%f "
     fi
-    echo -en "%F{"$(git_status_color)"}$gitStatusDot%f "
+    echo -en "%F{"$(git_status_color $gitStatus)"}$gitStatusDot%f "
   fi
 }
 
