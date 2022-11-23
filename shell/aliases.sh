@@ -12,11 +12,16 @@ alias gst='git status'
 alias ga='git add'
 alias gc='git commit'
 alias gcm='git commit -m'
+alias gcob='git checkout -b'
+alias gs='git branch | fzf | git switch'
 
 # Ruby
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
+
+# Use Brew'd Universal ctags
+alias ctags="`brew --prefix`/bin/ctags"
 
 ## Rails/RSpec
 alias s='bundle exec rspec'

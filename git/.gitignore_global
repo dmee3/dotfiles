@@ -5,6 +5,9 @@
 .AppleDouble
 .LSOverride
 
+## tags
+tags
+
 ## Thumbnails
 ._*
 
@@ -18,3 +21,4 @@
 # Work
 .solargraph.yml
 solargraph-rails.rb
+Procfile.debug

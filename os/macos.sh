@@ -13,6 +13,7 @@ brew install fzf
 brew install git-delta
 brew install lsd
 brew install neovim
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 brew install zsh-autosuggestions
 brew install zsh-syntax-highlighting
 

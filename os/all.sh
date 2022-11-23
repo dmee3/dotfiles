@@ -15,6 +15,5 @@ symlink_to_home ~/Stuff/dotfiles/shell/.hushlogin
 symlink_to_home ~/Stuff/dotfiles/shell/zsh/.zprofile
 symlink_to_home ~/Stuff/dotfiles/shell/zsh/.zshrc
 
-
 ## editors
 symlink_to_home ~/Stuff/dotfiles/editor/.vimrc
