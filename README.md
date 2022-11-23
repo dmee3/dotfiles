@@ -22,6 +22,7 @@ All of these should be handled by `setup.sh`
 - hack ([Nerd Font](https://github.com/ryanoasis/nerd-fonts#patched-fonts)) *Note: used by LSDeluxe*
 - lsd ([LSDeluxe](https://github.com/Peltoche/lsd))
 - [neovim](https://neovim.io/)
+- [sketchybar](https://felixkratz.github.io/SketchyBar)
 - [universal-ctags](https://github.com/universal-ctags/ctags)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
@@ -30,3 +31,13 @@ All of these should be handled by `setup.sh`
 
 Vim plugins aren't installed by default, but plugins are referenced in the vimrc file and ready to be managed by Vim-Plug.
 To begin, simply open vim and run `:PluginInstall` to download and install all plugins.
+
+## SketchyBar
+SketchyBar depends on the Hack Nerd Font by default. It should automatically run at startup. If not, run
+
+```
+brew services start sketchybar
+```
+
+You will also need to hide the default macOS menu bar in *System Preferences -> Dock & Menu Bar*
+
