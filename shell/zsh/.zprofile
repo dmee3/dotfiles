@@ -4,7 +4,8 @@
 # by both login and interactive shells, unlike .zshrc.
 
 # Brew
-eval "$(`brew --prefix`/bin/brew shellenv)"
+# Note - this path works for Monterey, not sure if it will work for older MacOS versions
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 source ~/Stuff/dotfiles/shell/common.sh
 source ~/Stuff/dotfiles/shell/zsh/functions.zsh
