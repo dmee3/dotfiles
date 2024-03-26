@@ -7,3 +7,4 @@ source ~/.zprofile
 
 # Source any machine-specific settings, if they exist
 [[ -e ~/.machine-profile ]] && source ~/.machine-profile
+
