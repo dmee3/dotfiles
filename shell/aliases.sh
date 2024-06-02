@@ -28,6 +28,8 @@ alias s='bundle exec rspec'
 alias brc='bin/rails c'
 alias brs='bin/rails s'
 alias berc='bundle exec rails c'
+alias berdm='bundle exec rails db:migrate'
+alias berdr='bundle exec rails db:reset'
 alias bers='bundle exec rails s'
 
 # Misc
