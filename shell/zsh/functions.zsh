@@ -81,11 +81,11 @@ git_status_color () {
   echo -en $statusText
 }
 
-# Print a label for the current git branch if it isn't master.
+# Print a label for the current git branch
 git_branch () {
   local gitBranch="$(git_check)"
-  if [[ $gitBranch && ! $gitBranch == 'master' && $COLUMNS -gt 79 ]]; then
-    echo -en "%F{#616161}⌥ $gitBranch%f"
+  if [[ $gitBranch ]]; then
+    echo -en "%F{cyan}⌥ $gitBranch%f"
   fi
 }
 
@@ -105,6 +105,11 @@ git_dot () {
     fi
     echo -en "%F{"$(git_status_color $gitStatus)"}$gitStatusDot%f "
   fi
+}
+
+# Print a horizontal line the width of the terminal
+prompt_line () {
+  printf "%*s\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' '─'
 }
 
 # Get the current directory, truncate it, and make it blue
