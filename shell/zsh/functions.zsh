@@ -109,7 +109,9 @@ git_dot () {
 
 # Print a horizontal line the width of the terminal
 prompt_line () {
+  echo -en "%F{240}"
   printf "%*s\n" "${COLUMNS:-$(tput cols)}" '' | tr ' ' '─'
+  echo -en "%f"
 }
 
 # Get the current directory, truncate it, and make it blue
