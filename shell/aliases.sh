@@ -33,7 +33,7 @@ alias berdr='bundle exec rails db:reset'
 alias bers='bundle exec rails s'
 
 # Misc
-alias cat='bat'
+alias cat='bat --style=plain'
 alias l='lsd -la'
 alias chrome='open -a /Applications/Google\ Chrome.app'
 
