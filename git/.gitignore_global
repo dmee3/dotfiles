@@ -22,3 +22,5 @@ tags
 .solargraph.yml
 solargraph-rails.rb
 Procfile.debug
+
+**/.claude/settings.local.json
